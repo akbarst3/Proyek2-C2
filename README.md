@@ -1,1 +1,1 @@
-Repository Proyek 2 Kelomopk C2
+Repository Proyek 2 Kelompok C2
