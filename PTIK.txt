@@ -1,0 +1,16 @@
+Jawablah pertanyaan-pertanyaan di bawah ini dengan jaeaban yang paling tepat!
+
+1. Istilah komputer diambil dari latin computare, artinya adalah…
+a. Menghitung b. Menulis c. Mengerjakan d. Membaca
+
+2. Tahap proses memasukkan data kedalam komputer disebut…
+a. Processing b. Input c. Output d. Origination
+
+3. Program yang ditulis untuk mengendalikan dan mengkoordinasi kegiatan dari sistem komputer adalah pengertian dari…
+a. Sistem aplikasi b. Sistem pengoperasian c. Sistem operasi d. Sistem pengolahan
+
+4. Program yang ditujukan untuk menyelesaikan suatu permasalahan dalam aplikasi tertentu adalah pengertian dari…
+a. Application software b. Sistem software c. Operating Software d. Finishing Software
+
+5. Sebuah prosedur langkah demi langkah yang pasti untuk menyelesaikan sebuah masalah disebut...
+a. Proses b. Program c. Prosesor d. algoritma
