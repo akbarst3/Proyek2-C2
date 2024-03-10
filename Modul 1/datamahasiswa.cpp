@@ -23,15 +23,15 @@ string generatePassword(int length) {
 }
 
 int main() {
-    int numEntries;
+    int mhsEntries;
 
     cout << "Masukkan jumlah Mhasiswaa yang mengikuti ujian: ";
-    cin >> numEntries;
+    cin >> mhsEntries;
     cin.ignore(); // Clear input buffer
 
     ofstream outFile("data_mhs.txt", ios::app); // Open file struct
 
-    for (int i = 0; i < numEntries; ++i) {
+    for (int i = 0; i < mhsEntries; ++i) {
         string nama, nim;
 
         cout << "\nMasukkan Nama: ";
