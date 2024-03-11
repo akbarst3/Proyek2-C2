@@ -89,7 +89,6 @@ char dashboard(struct pengajar dosen)
     this_thread::sleep_for(chrono::seconds(1));
 
     cout << "Buat soal? (y/n)" << endl;
-    dsgffrger
     cin >> answer;
     system("cls");
 
