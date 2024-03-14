@@ -45,7 +45,7 @@ int main() {
 
     if (role == "dosen" || role == "mahasiswa") {
         string id, password;
-        string filename = "../assets/";
+        string filename = "../assets/folder-users/";
         filename += (role == "dosen") ? "data_dosen.txt" : "data_mahasiswa.txt";
         string id_label = (role == "dosen") ? "NIP: " : "NIM: ";
         cout << "Masukkan " << ((role == "dosen") ? "NIP" : "NIM") << ": ";
