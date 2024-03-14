@@ -1,8 +1,8 @@
+id: user123
+Password: pass123
 Nama: Yanto
-NIM: 223
-Password: FCpYKz1S
 
-Nama: Restu
-NIM: 200
-Password: YKECp3e7
+id: user234
+Password: pass234
+Nama: jupri
 

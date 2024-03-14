@@ -1,4 +1,3 @@
+id: user123
+Password: 211
 Nama: NS Junaedi
-NIP: 211
-Password: ilcIVqlp
-
