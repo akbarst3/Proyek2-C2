@@ -1,5 +1,5 @@
-#ifndef HEAD_H
-#define HEAD_H 
+#ifndef HEAD91_H
+#define HEAD91_H 
 #include <iostream>
 #include <fstream>
 #include <string>
