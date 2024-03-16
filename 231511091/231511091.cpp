@@ -1,9 +1,5 @@
 #include "231511091.h"
 
-// Fungsi untuk melakukan enkripsi menggunakan Caesar Cipher dengan geser 
-
-#include "231511091.h"
-
 
 // Fungsi Caesar Cipher
 string CaesarCipherEnkrip(const string plaintext, int shift) {
