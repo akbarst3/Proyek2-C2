@@ -5,19 +5,19 @@ PlayfairCipher::PlayfairCipher(const std::string& key) : key(key) {
     prepareMatrix();
 }
 
-void PlayfairCipher::prepareKey() {
+void PlayfairCipher::prepareKey() { // Salin kunci ke variabel sementara dan konversi menjadi huruf kapital
     std::string tempKey = key;
-    std::transform(tempKey.begin(), tempKey.end(), tempKey.begin(), ::toupper);
-    tempKey.erase(std::remove(tempKey.begin(), tempKey.end(), ' '), tempKey.end());
-    std::string::iterator end_pos = std::unique(tempKey.begin(), tempKey.end());
-    tempKey.erase(end_pos, tempKey.end());
+    std::transform(tempKey.begin(), tempKey.end(), tempKey.begin(), ::toupper); 
+    tempKey.erase(std::remove(tempKey.begin(), tempKey.end(), ' '), tempKey.end()); // Hapus spasi dari kunci
+    std::string::iterator end_pos = std::unique(tempKey.begin(), tempKey.end()); // Hapus karakter duplikat dari kunci
+    tempKey.erase(end_pos, tempKey.end()); // Isi karakter-karakter tersisa dari kunci (tidak termasuk 'J')
     for (char ch = 'A'; ch <= 'Z'; ++ch) {
         if (ch == 'J') continue; 
         if (tempKey.find(ch) == std::string::npos) {
             tempKey.push_back(ch);
         }
     }
-    if (tempKey.length() < 25) {
+    if (tempKey.length() < 25) { // Jika panjang kunci kurang dari 25, isi karakter-karakter tersisa
         for (char ch = 'A'; ch <= 'Z' && tempKey.length() < 25; ++ch) {
             if (ch == 'J') continue;
             if (tempKey.find(ch) == std::string::npos) {
@@ -25,11 +25,11 @@ void PlayfairCipher::prepareKey() {
             }
         }
     }
-    this->key = tempKey.substr(0, 25);
+    this->key = tempKey.substr(0, 25); // Perbarui variabel anggota key dengan kunci yang telah diproses (25 karakter pertama)
 }
 
 void PlayfairCipher::prepareMatrix() {
-    int k = 0;
+    int k = 0;  // Isi matriks 5x5 dengan karakter-karakter dari kunci
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 5; ++j) {
             matrix[i][j] = key[k++];
@@ -38,7 +38,7 @@ void PlayfairCipher::prepareMatrix() {
 }
 
 void PlayfairCipher::getCoordinates(char ch, int& row, int& col) {
-    if (ch == 'J') ch = 'I';
+    if (ch == 'J') ch = 'I'; // Temukan koordinat baris dan kolom dari sebuah karakter dalam matriks
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 5; ++j) {
             if (matrix[i][j] == ch) {
@@ -51,7 +51,7 @@ void PlayfairCipher::getCoordinates(char ch, int& row, int& col) {
 }
 
 std::string PlayfairCipher::fixText(const std::string& text) {
-    std::string result = text;
+    std::string result = text; // Konversi teks menjadi huruf kapital dan ganti karakter non-alfabet dengan spasi
     std::transform(result.begin(), result.end(), result.begin(), ::toupper);
     for (char& ch : result) {
         if (!isalpha(ch)) {
@@ -60,7 +60,7 @@ std::string PlayfairCipher::fixText(const std::string& text) {
             ch = 'I';
         }
     }
-    result.erase(std::remove(result.begin(), result.end(), ' '), result.end());
+    result.erase(std::remove(result.begin(), result.end(), ' '), result.end()); // Hapus spasi dan tambahkan 'X' jika panjang teks ganjil
     if (result.length() % 2 != 0) {
         result.push_back('X');
     }
@@ -69,7 +69,7 @@ std::string PlayfairCipher::fixText(const std::string& text) {
 
 std::string PlayfairCipher::encrypt(const std::string& plaintext) {
     std::string fixedText = fixText(plaintext);
-    std::string ciphertext = "";
+    std::string ciphertext = ""; // Enkripsi teks yang sudah diperbaiki menggunakan algoritma sandi Playfair
     for (size_t i = 0; i < fixedText.length(); i += 2) {
         char ch1 = fixedText[i];
         char ch2 = fixedText[i + 1];
