@@ -10,7 +10,7 @@ string CaesarCipherEnkrip(const string plaintext, int shift) {
             char base = isupper(c) ? 'A' : 'a';
             c = ((c - base) + shift) % 26 + base;
         }
-        ciphertext = ciphertext + c + 'X';
+        ciphertext = ciphertext + c;
     }
 
     return ciphertext;
