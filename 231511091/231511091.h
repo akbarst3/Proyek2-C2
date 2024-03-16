@@ -7,7 +7,7 @@
 #include <cctype>
 
 using namespace std;
-string CaesarCipherEnkrip(string plaintext[]);
-void createFile(string hasilEnkrip, string namaFile, string user)
+string CaesarCipherEnkrip(const string plaintext, int shift);
+void createFile(string hasilEnkrip, string namaFile, string user);
 
 #endif
