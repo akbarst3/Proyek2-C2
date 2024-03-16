@@ -11,7 +11,7 @@ void PlayfairCipher::prepareKey() { // Salin kunci ke variabel sementara dan kon
     tempKey.erase(std::remove(tempKey.begin(), tempKey.end(), ' '), tempKey.end()); // Hapus spasi dari kunci
     std::string::iterator end_pos = std::unique(tempKey.begin(), tempKey.end()); // Hapus karakter duplikat dari kunci
     tempKey.erase(end_pos, tempKey.end()); // Isi karakter-karakter tersisa dari kunci (tidak termasuk 'J')
-    for (char ch = 'A'; ch <= 'Z'; ++ch) {
+    for (char ch = 'A'; ch <= 'Z'; ++ch) { 
         if (ch == 'J') continue; 
         if (tempKey.find(ch) == std::string::npos) {
             tempKey.push_back(ch);
