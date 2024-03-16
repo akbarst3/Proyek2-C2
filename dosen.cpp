@@ -1,10 +1,12 @@
-#include "Modul1/231511085.h"
-#include "Modul4/231511091.h"
+#include "231511085/231511085.h"
+#include "231511088/231511088.h"
 
 int main()
 {
     user loggedUser = loginDosen();
-    cout << loggedUser.nama << endl;
-    string cipher = CaesarCipherEnkrip(loggedUser.nama);
-    cout << cipher;
+    string choice = dashboard(loggedUser);
+    if (choice == "Logout")
+    {
+        loggedUser = loginDosen();
+    }
 }
