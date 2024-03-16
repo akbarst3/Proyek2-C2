@@ -1,12 +1,14 @@
-1. a
- A. a
- B. a
- C. a
- D. a
+1. Istilah komputer diambil dari latin computare, artinya adalah…
+A. Menghitung B. Menulis C. Mengerjakan D. Membaca
 
-2. a
- A. a
- B. a
- C. a
- D. a
+2. Tahap proses memasukkan data kedalam komputer disebut…
+A. Processing B. Input C. Output D. Origination
 
+3. Program yang ditulis untuk mengendalikan dan mengkoordinasi kegiatan dari sistem komputer adalah pengertian dari…
+A. Sistem aplikasi B. Sistem pengoperasian C. Sistem operasi D. Sistem pengolahan
+
+4. Program yang ditujukan untuk menyelesaikan suatu permasalahan dalam aplikasi tertentu adalah pengertian dari…
+A. Application software B. Sistem software C. Operating Software D. Finishing Software
+
+5. Sebuah prosedur langkah demi langkah yang pasti untuk menyelesaikan sebuah masalah disebut...
+A. Proses B. Program C. Prosesor D. algoritma
