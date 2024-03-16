@@ -87,5 +87,5 @@ std::string PlayfairCipher::encrypt(const std::string& plaintext) {
             ciphertext += matrix[row2][col1];
         }
     }
-    return ciphertext; //coba
+    return ciphertext;
 }

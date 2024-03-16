@@ -20,4 +20,4 @@ public:
     std::string encrypt(const std::string& plaintext);
 };
 
-#endif  //git
+#endif  
