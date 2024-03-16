@@ -7,6 +7,6 @@
 #include <cctype>
 
 using namespace std;
-string CaesarCipherEnkrip(string plaintext);
+string CaesarCipherEnkrip(string plaintext[]);
 
 #endif
