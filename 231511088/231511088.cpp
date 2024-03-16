@@ -4,7 +4,7 @@ void simpanKeFile(const ujian *soalBaru, string namaFile, int jumlahSoal)
 {
     ofstream file("../assets/folder-soal/" + namaFile + ".txt");
     if (file.is_open())
-    {
+    {       
         for (int i = 0; i < jumlahSoal; i++)
         {
             file << i + 1 << ". " << soalBaru[i].pertanyaan << endl;
