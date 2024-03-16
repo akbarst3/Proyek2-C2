@@ -8,5 +8,6 @@
 
 using namespace std;
 string CaesarCipherEnkrip(string plaintext[]);
+void createFile(string hasilEnkrip, string namaFile, string user)
 
 #endif
