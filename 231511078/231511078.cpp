@@ -5,7 +5,7 @@ PlayfairCipher::PlayfairCipher(const std::string& key) : key(key) {
     prepareMatrix();
 }
 
-void PlayfairCipher::prepareKey() { // Salin kunci ke variabel sementara dan konversi menjadi huruf kapital
+void PlayfairCipher::prepareKey() { // Menyalin kunci ke variabel sementara dan konversi menjadi huruf kapital
     std::string tempKey = key;
     std::transform(tempKey.begin(), tempKey.end(), tempKey.begin(), ::toupper); 
     tempKey.erase(std::remove(tempKey.begin(), tempKey.end(), ' '), tempKey.end()); // Hapus spasi dari kunci
