@@ -1,12 +1,28 @@
 #include "231511086.h"
 
+using namespace std;
+
 int main() {
-    std::string questionFile = "../Assets/folder-soal/PTIK.txt";
-    std::string answerFile = "../Assets/folder-jawab-mhsw/jawaban_ptik.txt";
+  string questionFile = "../Assets/folder-soal/PTIK.txt";
 
-    std::vector<Question> questions = readQuestionsFromFile(questionFile);
+  vector<Question> questions = readQuestionsFromFile(questionFile);
 
-    saveAnswersToFile(questions, answerFile);
+  // Buat array untuk menyimpan jawaban
+  char answers[MAX_QUESTIONS];
 
-    return 0;
+  // Simpan jawaban pengguna ke dalam array
+  saveAnswersToFile(questions, answers);
+
+  // Cetak jawaban
+  for (int i = 0; i < questions.size(); ++i) {
+    cout << "Pertanyaan " << (i + 1) << ": " << answers[i] << endl;
+  }
+
+  /*cek hasil jawaban di array
+  for (int i = 0;i < questions.size(); i++) {
+    cout << answers[i];
+  } */
+
+  system("PAUSE");
+  return 0;
 }
