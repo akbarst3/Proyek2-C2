@@ -88,4 +88,4 @@ std::string PlayfairCipher::encrypt(const std::string& plaintext) {
         }
     }
     return ciphertext;
-} //komen
+}
