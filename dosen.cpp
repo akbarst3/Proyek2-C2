@@ -4,9 +4,27 @@
 int main()
 {
     user loggedUser = loginDosen();
-    string choice = dashboard(loggedUser);
-    if (choice == "Logout")
+    char choice = dashboard(loggedUser);
+    string mataUjian;
+    int jumlahSoal;
+    ujian *soalBaru;
+    switch (choice)
     {
+    case '1':
+        cout << "Nama mata ujian: ";
+        cin >> mataUjian;
+        cout << "Jumlah soal: ";
+        cin >> jumlahSoal;
+        soalBaru = new ujian[jumlahSoal]; // alokasi memori
+        buatSoal(mataUjian, jumlahSoal, soalBaru);
+        break;
+    case '2':
+        system("cls");
         loggedUser = loginDosen();
+        break;
+    default:
+        cout << "---Karakter yang diinputkan tidak valid---" << endl;
+        system("cls");
+        choice = dashboard(loggedUser);
     }
 }
