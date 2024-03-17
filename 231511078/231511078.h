@@ -7,11 +7,11 @@
 using namespace std;
 
 
-void removeSpaces(std::string& str);
-void toLowerCase(std::string& str);
-void fillDiagraph(std::string& str);
-void generateKeyTable(const std::string& key, std::string& table);
-void encryptByPlayfairCipher(const std::string& table, const std::string& plainText, std::string& cipherText);
-void printMatrix(const std::string& table);
+void removeSpaces(string& str);
+void toLowerCase(string& str);
+void fillDiagraph(string& str);
+void generateKeyTable(const string& key, string& table);
+void encryptByPlayfairCipher(const string& table, const string& plainText, string& cipherText);
+void printMatrix(const string& table);
 
 #endif /
