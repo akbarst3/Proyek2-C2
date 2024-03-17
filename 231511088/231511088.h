@@ -14,7 +14,8 @@ struct ujian
 
 char dashboard(user dosen);
 void toUpperCase(string *str);
-void buatSoal(string mataUjian, int jumlahSoal, ujian *soalBaru);
+void buatSoal(string *mataUjian, int jumlahSoal, ujian *soalBaru);
 void simpanKeFile(ujian *soalBaru, string namaFile, int jumlahSoal);
+void buatKunjaw(string *kunjaw, string mataUjian, int jumlahSoal);
 
 #endif

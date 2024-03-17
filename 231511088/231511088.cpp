@@ -25,11 +25,11 @@ void toUpperCase(string *str)
     transform(str->begin(), str->end(), str->begin(), ::toupper);
 }
 
-void buatSoal(string mataUjian, int jumlahSoal, ujian *soalBaru)
+void buatSoal(string *mataUjian, int jumlahSoal, ujian *soalBaru)
 {
-    toUpperCase(&mataUjian);
+    toUpperCase(*(&mataUjian));
     cout << "-------------------------------------------------\n";
-    cout << "     UJIAN " << mataUjian << '\n';
+    cout << "     UJIAN " << *mataUjian << '\n';
     cout << "-------------------------------------------------\n";
     cin.ignore();
 
@@ -42,30 +42,44 @@ void buatSoal(string mataUjian, int jumlahSoal, ujian *soalBaru)
             cout << " " << char('a' + j) << ". ";
             getline(cin, soalBaru[i].jawaban[j]);
         }
-        cout << endl << endl;
+        cout << endl
+             << endl;
     }
-    simpanKeFile(soalBaru, mataUjian, jumlahSoal);
+    simpanKeFile(soalBaru, *mataUjian, jumlahSoal);
 }
 
 void simpanKeFile(ujian *soalBaru, string namaFile, int jumlahSoal)
+{
+    ofstream file("assets/folder-soal/" + namaFile + ".txt");
+    if (file.is_open())
     {
-        ofstream file("assets/folder-soal/" + namaFile + ".txt");
-        if (file.is_open())
+        for (int i = 0; i < jumlahSoal; i++)
         {
-            for (int i = 0; i < jumlahSoal; i++)
+            file << i + 1 << ". " << soalBaru[i].pertanyaan << endl;
+            for (int j = 0; j < 4; j++)
             {
-                file << i + 1 << ". " << soalBaru[i].pertanyaan << endl;
-                for (int j = 0; j < 4; j++)
-                {
-                    file << " " << char('A' + j) << ". " << soalBaru[i].jawaban[j] << " ";
-                }
-                file << endl << endl;
+                file << " " << char('A' + j) << ". " << soalBaru[i].jawaban[j] << " ";
             }
-            file.close();
-            cout << "Soal telah disimpan ke dalam folder-soal dengan nama file '" << namaFile << ".txt'" << endl;
+            file << endl
+                 << endl;
         }
-        else
-        {
-            cout << "Gagal membuka file untuk penyimpanan." << endl;
-        }
+        file.close();
+        cout << "Soal telah disimpan ke dalam folder-soal dengan nama file '" << namaFile << ".txt'" << endl;
     }
+    else
+    {
+        cout << "Gagal membuka file untuk penyimpanan." << endl;
+    }
+}
+
+void buatKunjaw(string *kunjaw, string mataUjian, int jumlahSoal)
+{
+    string temp;
+    cout << "Buat Kunci Jawaban " << mataUjian << endl;
+    for (int i = 0; i < jumlahSoal; i++)
+    {
+        cout << i + 1 << ". ";
+        cin >> temp;
+        *kunjaw += temp;
+    }
+}

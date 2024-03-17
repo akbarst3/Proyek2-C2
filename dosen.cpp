@@ -1,6 +1,7 @@
 #include "user.h"
 #include "231511085/231511085.h"
 #include "231511088/231511088.h"
+#include "231511091/231511091.h"
 
 int main()
 {
@@ -9,6 +10,7 @@ int main()
     string mataUjian;
     int jumlahSoal;
     ujian *soalBaru;
+    string kunjaw = "";
     switch (choice)
     {
     case '1':
@@ -18,7 +20,11 @@ int main()
         cout << "Jumlah soal: ";
         cin >> jumlahSoal;
         soalBaru = new ujian[jumlahSoal]; // alokasi memori
-        buatSoal(mataUjian, jumlahSoal, soalBaru);
+        buatSoal(&mataUjian, jumlahSoal, soalBaru);
+        system("cls");
+        buatKunjaw(&kunjaw, mataUjian, jumlahSoal);
+        CaesarCipherEnkrip(kunjaw, jumlahSoal);
+        
         break;
     case '2':
         system("cls");
@@ -29,5 +35,4 @@ int main()
         system("cls");
         main();
     }
-    
 }
