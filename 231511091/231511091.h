@@ -8,7 +8,10 @@
 #include <algorithm>
 
 using namespace std;
+
 string CaesarCipherEnkrip(const string plaintext, int shift);
 void createFile(string hasilEnkrip, string namaFile, string user);
+void removeSpaces(string& str);
+void toLowerCase(string& str);
 
 #endif
