@@ -7,12 +7,14 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 struct Question {
-  std::string question;
-  std::vector<std::string> options;
+  string question;
+  vector<string> options;
 };
 
-std::vector<Question> readQuestionsFromFile(const std::string& filename);
-void saveAnswersToFile(const std::vector<Question>& questions, char answers[]);
+vector<Question> readQuestionsFromFile(const string& filename);
+void saveAnswersToFile(const vector<Question>& questions, char answers[]);
 
 #endif

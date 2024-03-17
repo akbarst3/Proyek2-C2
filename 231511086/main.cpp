@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-  string questionFile = "../Assets/folder-soal/PTIK.txt";
+  string questionFile = "../Assets/folder-soal/mater.txt";
 
   vector<Question> questions = readQuestionsFromFile(questionFile);
 
