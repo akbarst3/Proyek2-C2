@@ -13,7 +13,7 @@ struct ujian
     string jawaban[4];
 };
 
-string dashboard(user dosen);
+char dashboard(user dosen);
 void buatSoal(string mataUjian, int jumlahSoal, ujian *soalBaru);
 string toUpperCase(string str);
 void simpanKeFile(const ujian *soalBaru, string namaFile, int jumlahSoal)

@@ -2,22 +2,16 @@
 #define HEAD078_H
 
 #include <string>
-#include <vector>
-#include <algorithm>
+#include <iostream>
+#include<algorithm>
+using namespace std;
 
-class PlayfairCipher {
-private:
-    std::string key;
-    char matrix[5][5];
 
-    void prepareKey();
-    void prepareMatrix();
-    void getCoordinates(char ch, int& row, int& col);
-    std::string fixText(const std::string& text);
+void removeSpaces(string& str);
+void toLowerCase(string& str);
+void fillDiagraph(string& str);
+void generateKeyTable(const string& key, string& table);
+void encryptByPlayfairCipher(const string& table, const string& plainText, string& cipherText);
+void printMatrix(const string& table);
 
-public:
-    PlayfairCipher(const std::string& key);
-    std::string encrypt(const std::string& plaintext);
-};
-
-#endif  
+#endif /

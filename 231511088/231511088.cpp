@@ -4,7 +4,7 @@ void simpanKeFile(const ujian *soalBaru, string namaFile, int jumlahSoal)
 {
     ofstream file("../assets/folder-soal/" + namaFile + ".txt");
     if (file.is_open())
-    {
+    {       
         for (int i = 0; i < jumlahSoal; i++)
         {
             file << i + 1 << ". " << soalBaru[i].pertanyaan << endl;
@@ -24,10 +24,9 @@ void simpanKeFile(const ujian *soalBaru, string namaFile, int jumlahSoal)
 }
 
 
-string toUpperCase(string str)
+void toUpperCase(string *str)
 {
-    transform(str.begin(), str.end(), str.begin(), ::toupper);
-    return str;
+    transform(str->begin(), str->end(), str->begin(), ::toupper);
 }
 
 void buatSoal(string mataUjian, int jumlahSoal, ujian *soalBaru)
@@ -52,14 +51,9 @@ void buatSoal(string mataUjian, int jumlahSoal, ujian *soalBaru)
     simpanKeFile(soalBaru, mataUjian, jumlahSoal);
 }
 
-string dashboard(user dosen)
+char dashboard(user dosen)
 {
     char answer;
-
-    string mataUjian; // Pindahkan deklarasi di sini
-    int jumlahSoal;   // Pindahkan deklarasi di sini
-    ujian *soalBaru;
-
     // Tampilkan dashboard
     cout << "------------------------------\n";
     cout << "|                            |\n";
@@ -73,21 +67,5 @@ string dashboard(user dosen)
     cout << "(1) Buat soal" << endl;
     cout << "(2) Logout" << endl;
     cin >> answer;
-
-    switch (answer)
-    {
-    case '1':
-        cout << "Nama mata ujian: ";
-        cin >> mataUjian;
-        cout << "Jumlah soal: ";
-        cin >> jumlahSoal;
-        soalBaru = new ujian[jumlahSoal];
-        buatSoal(mataUjian, jumlahSoal, soalBaru);
-        break;
-    case '2':
-        return "Logout";
-    default:
-        cout << "---Karakter yang diinputkan tidak valid---" << endl;
-        return dashboard(dosen); // Kembalikan nilai dari default case
-    }
+    return answer;
 }
