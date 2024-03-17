@@ -15,8 +15,8 @@ user login(const string &id, const string &password, const string &users)
     ifstream file(filename);
     if (!file.is_open())
     {
-        cerr << "File not found or unable to open.\n";
-        return {}; // Return empty user struct
+        cerr << "File tidak ditemukan atau tidak bisa dibukan.\n";
+        return {};
     }
 
     string line;
@@ -35,7 +35,6 @@ user login(const string &id, const string &password, const string &users)
                 {
                     // Found name
                     currentUser.id = id;
-                    currentUser.password = password;
                     currentUser.nama = line.substr(6);
                     file.close();
                     return currentUser;
@@ -45,13 +44,12 @@ user login(const string &id, const string &password, const string &users)
     }
     file.close();
 
-    // If ID exists but password doesn't match
     if (idMatch)
         cerr << "Password salah.\n";
     else
         cerr << "ID tidak ditemukan.\n";
 
-    return {}; // If login fails
+    return {};
 }
 
 user loginMhs()

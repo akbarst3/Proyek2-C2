@@ -4,8 +4,7 @@
 #include <string>
 #include <fstream>
 #include <algorithm>
-
-using namespace std;
+#include "../user.h"
 
 struct ujian
 {
@@ -14,12 +13,8 @@ struct ujian
 };
 
 char dashboard(user dosen);
+void toUpperCase(string *str);
 void buatSoal(string mataUjian, int jumlahSoal, ujian *soalBaru);
-string toUpperCase(string str);
-void simpanKeFile(const ujian *soalBaru, string namaFile, int jumlahSoal)
-
-
-
-
+void simpanKeFile(ujian *soalBaru, string namaFile, int jumlahSoal);
 
 #endif

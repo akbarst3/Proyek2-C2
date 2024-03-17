@@ -1,3 +1,4 @@
+#include "user.h"
 #include "231511085/231511085.h"
 #include "231511088/231511088.h"
 
@@ -11,6 +12,7 @@ int main()
     switch (choice)
     {
     case '1':
+        system("cls");
         cout << "Nama mata ujian: ";
         cin >> mataUjian;
         cout << "Jumlah soal: ";
@@ -20,11 +22,12 @@ int main()
         break;
     case '2':
         system("cls");
-        loggedUser = loginDosen();
+        main();
         break;
     default:
         cout << "---Karakter yang diinputkan tidak valid---" << endl;
         system("cls");
-        choice = dashboard(loggedUser);
+        main();
     }
+    
 }
