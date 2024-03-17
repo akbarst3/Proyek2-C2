@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void CaesarCipherEnkrip(const string *plaintext, int shift);
+void CaesarCipherEnkrip(string *plaintext, int shift);
 void createFile(string hasilEnkrip, string namaFile, string user);
 void removeSpaces(string& str);
 void toLowerCase(string& str);
