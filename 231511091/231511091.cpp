@@ -20,6 +20,7 @@ void createFile(string hasilEnkrip, string namaFile, string user) {
     string path;
     if(user == "dosen"){
         path = "assets/folder-kunci-jawaban/";
+        namaFile = "kunjaw" + namaFile;
     } else {
         path  = "assets/folder-jawab-mhsw/";
     }
