@@ -1,17 +1,15 @@
 #ifndef HEAD078_H
 #define HEAD078_H
+#include "../231511091/231511091.h"
 
 #include <string>
 #include <iostream>
-#include<algorithm>
+#include <algorithm>
 using namespace std;
 
-
-void removeSpaces(string& str);
-void toLowerCase(string& str);
-void fillDiagraph(string& str);
+const string list1 = "abcdefghiklmnopqrstuvwxyz";
 void generateKeyTable(const string& key, string& table);
 void encryptByPlayfairCipher(const string& table, const string& plainText, string& cipherText);
-void printMatrix(const string& table);
+void PlayfairCipher(string plainText,string key);
 
-#endif /
+#endif 
