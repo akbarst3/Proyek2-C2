@@ -7,15 +7,11 @@ user login(const string &id, const string &password, const string &users)
     {
         filename += (users == "dosen") ? "data_dosen.txt" : "data_mhs.txt";
     }
-    else
-    {
-        cout << "Peran yang dimasukkan tidak valid." << endl;
-    }
 
     ifstream file(filename);
     if (!file.is_open())
     {
-        cerr << "File tidak ditemukan atau tidak bisa dibukan.\n";
+        cerr << "Database file tidak ditemukan atau tidak bisa dibuka.\n";
         return {};
     }
 
