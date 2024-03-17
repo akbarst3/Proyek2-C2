@@ -10,6 +10,6 @@ using namespace std;
 const string list1 = "abcdefghiklmnopqrstuvwxyz";
 void generateKeyTable(const string& key, string& table);
 void encryptByPlayfairCipher(const string& table, const string& plainText, string& cipherText);
-void PlayfairCipher(string plainText,string key);
+void PlayfairCipher(string& plainText, string& key);
 
 #endif 
