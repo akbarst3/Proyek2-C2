@@ -3,16 +3,17 @@
 
 // Fungsi Caesar Cipher
 void CaesarCipherEnkrip(string &plaintext, int shift) {
-    string ciphertext = "";
 
+    string cipher = "";
+    string add = "x";
     for (char c : plaintext) {
         if (isalpha(c)) {
             char base = isupper(c) ? 'A' : 'a';
             c = ((c - base) + shift) % 26 + base;
         }
-        ciphertext += c + 'x';
+        cipher += c + add;
     }
-    plaintext = ciphertext;
+    plaintext = cipher;
 
 }
 
