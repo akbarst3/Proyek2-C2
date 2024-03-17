@@ -2,10 +2,10 @@
 #
 
 // Fungsi Caesar Cipher
-string CaesarCipherEnkrip(const string plaintext, int shift) {
+void CaesarCipherEnkrip(const string *plaintext, int shift) {
     string ciphertext = "";
 
-    for (char c : plaintext) {
+    for (char c : *plaintext) {
         if (isalpha(c)) {
             char base = isupper(c) ? 'A' : 'a';
             c = ((c - base) + shift) % 26 + base;
@@ -13,7 +13,6 @@ string CaesarCipherEnkrip(const string plaintext, int shift) {
         ciphertext = ciphertext + c + 'X';
     }
 
-    return ciphertext;
 }  
 
 void createFile(string hasilEnkrip, string namaFile, string user) {
