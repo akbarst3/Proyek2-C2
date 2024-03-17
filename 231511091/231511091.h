@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <cctype>
+#include <algorithm>
 
 using namespace std;
 string CaesarCipherEnkrip(const string plaintext, int shift);
