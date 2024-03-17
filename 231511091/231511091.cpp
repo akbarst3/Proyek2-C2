@@ -2,18 +2,19 @@
 #
 
 // Fungsi Caesar Cipher
-void CaesarCipherEnkrip(const string *plaintext, int shift) {
+void CaesarCipherEnkrip(string &plaintext, int shift) {
     string ciphertext = "";
 
-    for (char c : *plaintext) {
+    for (char c : plaintext) {
         if (isalpha(c)) {
             char base = isupper(c) ? 'A' : 'a';
             c = ((c - base) + shift) % 26 + base;
         }
-        ciphertext = ciphertext + c + 'X';
+        ciphertext += c + 'x';
     }
+    plaintext = ciphertext;
 
-}  
+}
 
 void createFile(string hasilEnkrip, string namaFile, string user) {
     string path;
