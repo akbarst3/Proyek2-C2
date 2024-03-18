@@ -68,8 +68,9 @@ void deleteSameChar(string &key)
     key = temp;
 }
 
-void caesarEnkrip(string &plaintext, int shift, string &key){
+void firstEncryption(string &plaintext, int shift, string &key){
     toLowerCase(key);
     CaesarCipherEnkrip(plaintext, shift);
     CaesarCipherEnkrip(key, shift);
     deleteSameChar(key);
+}
