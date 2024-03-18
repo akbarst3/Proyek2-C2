@@ -1,9 +1,15 @@
 1. a
- A. c  B. c  C. c  D. c 
+ A. a  B. a  C. a  D. a 
 
-2. c
- A. c  B. c  C. c  D. c 
+2. a
+ A. a  B. a  C. a  D. a 
 
-3. c
- A. c  B. c  C. c  D. c 
+3. a
+ A. a  B. a  C. a  D. a 
+
+4. a
+ A. a  B. a  C. a  D. a 
+
+5. a
+ A. a  B. a  C. a  D. a 
 
