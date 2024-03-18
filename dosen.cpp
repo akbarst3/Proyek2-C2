@@ -6,7 +6,6 @@
 
 int main()
 {
-
     user loggedUser = loginDosen();
     char choice;
     if (loggedUser.nama == "")

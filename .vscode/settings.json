@@ -57,6 +57,7 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
+    "*.embeddedhtml": "html",
     "fstream": "cpp",
     "array": "cpp",
     "atomic": "cpp",
@@ -108,6 +109,7 @@
     "stop_token": "cpp",
     "streambuf": "cpp",
     "thread": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "optional": "cpp"
   }
 }

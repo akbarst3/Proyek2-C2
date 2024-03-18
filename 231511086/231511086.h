@@ -6,6 +6,9 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <dirent.h>
+#include <limits>
+#include "../user.h"
 
 using namespace std;
 
@@ -15,6 +18,13 @@ struct Question {
 };
 
 vector<Question> readQuestionsFromFile(const string& filename);
+
 void saveAnswersToFile(const vector<Question>& questions, char answers[]);
+
+char dashboard(user mhs);
+// Fungsi untuk mendapatkan daftar file dalam suatu folder
+void dapatkanFileDiFolder(const string& pathFolder, vector<string>& files);
+// Fungsi untuk meminta pengguna memilih file dari daftar
+string pilihFile(const vector<string>& files);
 
 #endif
