@@ -74,8 +74,9 @@ char dashboard(user mhs)
     return answer;
 }
 
-void dapatkanFileDiFolder(const string& pathFolder, vector<string>& files) {
+vector<string> dapatkanFileDiFolder(const string& pathFolder) {
     string fullPath = "Assets/folder-soal/" + pathFolder; // Menggabungkan path relatif dengan folder-soal
+    vector<string> files;
     DIR *direktori;
     struct dirent *entri;
     if ((direktori = opendir(fullPath.c_str())) != NULL) {
@@ -89,8 +90,8 @@ void dapatkanFileDiFolder(const string& pathFolder, vector<string>& files) {
     } else {
         cerr << "Error: Tidak dapat membuka direktori." << endl;
     }
+    return files;
 }
-
 
 // Fungsi untuk meminta pengguna memilih file dari daftar
 string pilihFile(const vector<string>& files) {
@@ -122,4 +123,5 @@ string pilihFile(const vector<string>& files) {
 
     return alamatFile;
 }
+
 

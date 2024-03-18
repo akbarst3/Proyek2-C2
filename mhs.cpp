@@ -21,7 +21,7 @@ int main()
     {
     case '1':
         system("cls");
-        dapatkanFileDiFolder(folderPath, files);
+        vector<string> files = dapatkanFileDiFolder(folderPath);
 
         if (!files.empty())
         {
@@ -33,7 +33,7 @@ int main()
 
             string alamatFileTerpilih = pilihFile(files);
 
-            if (alamatFileTerpilih.empty())
+              if (alamatFileTerpilih.empty())
             {
                 cout << "Tidak ada soal yang dipilih." << endl;
             }
@@ -69,5 +69,7 @@ int main()
         {
             cout << "Tidak ada soal yang ditemukan dalam folder tersebut." << endl;
         }
+        break;
     }
+
 }

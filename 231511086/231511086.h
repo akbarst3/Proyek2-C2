@@ -23,7 +23,7 @@ void saveAnswersToFile(const vector<Question>& questions, char answers[]);
 
 char dashboard(user mhs);
 // Fungsi untuk mendapatkan daftar file dalam suatu folder
-void dapatkanFileDiFolder(const string& pathFolder, vector<string>& files);
+vector<string> dapatkanFileDiFolder(const string& pathFolder);
 // Fungsi untuk meminta pengguna memilih file dari daftar
 string pilihFile(const vector<string>& files);
 
