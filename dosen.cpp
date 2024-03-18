@@ -6,7 +6,6 @@
 
 int main()
 {
-
     user loggedUser = loginDosen();
     char choice;
     if (loggedUser.nama == "")
@@ -22,7 +21,7 @@ int main()
     int jumlahSoal;
     ujian *soalBaru;
     string kunjaw = "";
-    string key;
+    string key = "";
     switch (choice)
     {
     case '1':
@@ -35,8 +34,8 @@ int main()
         system("cls");
         buatSoal(&mataUjian, jumlahSoal, soalBaru);
         buatKunjaw(&kunjaw, mataUjian, jumlahSoal);
-        CaesarCipherEnkrip(kunjaw, jumlahSoal);
-        CaesarCipherEnkrip(key, jumlahSoal);
+        key = mataUjian;
+        firstEncryption(kunjaw, jumlahSoal, key);
         kunjaw = PlayfairCipher(kunjaw, key);
         createFile(kunjaw, mataUjian, "dosen");
         break;

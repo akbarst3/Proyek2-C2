@@ -1,5 +1,5 @@
 #include "231511091.h"
-#
+
 
 // Fungsi Caesar Cipher
 void CaesarCipherEnkrip(string &plaintext, int shift) {
@@ -35,14 +35,42 @@ void createFile(string hasilEnkrip, string namaFile, string user) {
     }
 }
 
-void removeSpaces(string& str) {
+void removeSpaces(string &str) {
     str.erase(remove(str.begin(), str.end(), ' '), str.end());
 }
 
-void toLowerCase(string& str) {
+void toLowerCase(string &str) {
     for (char& ch : str) {
         if (isupper(ch)) {
             ch = tolower(ch);
         }  
     }
+}
+
+void deleteSameChar(string &key)
+{
+    string temp;
+    for (char c : key)
+    {
+        bool found = false;
+        for (char d : temp)
+        {
+            if (d == c)
+            {
+                found = true;
+            }
+        }
+        if (!found)
+        {
+            temp += c;
+        }
+    }
+    key = temp;
+}
+
+void firstEncryption(string &plaintext, int shift, string &key){
+    toLowerCase(key);
+    CaesarCipherEnkrip(plaintext, shift);
+    CaesarCipherEnkrip(key, shift);
+    deleteSameChar(key);
 }

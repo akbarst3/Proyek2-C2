@@ -74,12 +74,29 @@ void simpanKeFile(ujian *soalBaru, string namaFile, int jumlahSoal)
 
 void buatKunjaw(string *kunjaw, string mataUjian, int jumlahSoal)
 {
-    string temp;
-    cout << "Buat Kunci Jawaban " << mataUjian << endl;
-    for (int i = 0; i < jumlahSoal; i++)
+    char temp;
+    string format = "abcd";
+    cout << "Buat Kunci Jawaban " << mataUjian
+         << " (a/b/c/d)" << endl;
+    int soal = 1;
+    while (soal <= jumlahSoal)
     {
-        cout << i + 1 << ". ";
+        cout << soal << ". ";
         cin >> temp;
-        *kunjaw += temp;
+        bool valid = 0;
+        for (char c : format)
+        {
+            if (temp == c)
+            {
+                *kunjaw += temp;
+                valid = 1;
+            }
+        }
+        if (!valid)
+        {
+            cout << "Input salah! (a/b/c/d)" << endl;
+        } else {
+            soal++;
+        }
     }
 }
