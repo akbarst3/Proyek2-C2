@@ -21,7 +21,7 @@ int main()
     int jumlahSoal;
     ujian *soalBaru;
     string kunjaw = "";
-    string key;
+    string key = "";
     switch (choice)
     {
     case '1':
@@ -35,6 +35,8 @@ int main()
         buatSoal(&mataUjian, jumlahSoal, soalBaru);
         buatKunjaw(&kunjaw, mataUjian, jumlahSoal);
         CaesarCipherEnkrip(kunjaw, jumlahSoal);
+        key = mataUjian;
+        toLowerCase(key);
         CaesarCipherEnkrip(key, jumlahSoal);
         kunjaw = PlayfairCipher(kunjaw, key);
         createFile(kunjaw, mataUjian, "dosen");
