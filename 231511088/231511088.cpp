@@ -77,7 +77,7 @@ void buatKunjaw(string *kunjaw, string mataUjian, int jumlahSoal)
     char temp;
     string format = "abcd";
     cout << "Buat Kunci Jawaban " << mataUjian
-         << "(a/b/c/d)" << endl;
+         << " (a/b/c/d)" << endl;
     int soal = 1;
     while (soal <= jumlahSoal)
     {
