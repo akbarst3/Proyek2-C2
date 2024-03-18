@@ -4,7 +4,8 @@
 
 int main()
 {
-    string folderPath = "Assets/folder-soal";
+    vector<Question> questions;
+    string folder_path = "Assets/folder-soal";
     vector<string> files;
     user loggedUser = loginMhs();
     char choice;
@@ -17,59 +18,44 @@ int main()
     {
         choice = dashboard(loggedUser);
     }
+
     switch (choice)
     {
     case '1':
         system("cls");
-        vector<string> files = dapatkanFileDiFolder(folderPath);
+        
+        chooseFile(folder_path);
 
-        if (!files.empty())
+        questions = readQuestionsFromFile(folder_path);
+
+        // Buat array untuk menyimpan jawaban
+        char answers[MAX_QUESTIONS];
+
+        // Simpan jawaban pengguna ke dalam array
+        saveAnswersToFile(questions, answers);
+
+        // Cetak jawaban
+        for (int i = 0; i < questions.size(); ++i)
         {
-            cout << "Pilih Soal: " << endl;
-            for (size_t i = 0; i < files.size(); ++i)
-            {
-                cout << i + 1 << ". " << files[i] << endl;
-            }
-
-            string alamatFileTerpilih = pilihFile(files);
-
-              if (alamatFileTerpilih.empty())
-            {
-                cout << "Tidak ada soal yang dipilih." << endl;
-            }
-            else
-            {
-                cout << "Soal yang dipilih : " << alamatFileTerpilih << endl;
-                string questionFile = alamatFileTerpilih;
-
-                vector<Question> questions = readQuestionsFromFile(questionFile);
-
-                // Buat array untuk menyimpan jawaban
-                char answers[MAX_QUESTIONS];
-
-                // Simpan jawaban pengguna ke dalam array
-                saveAnswersToFile(questions, answers);
-
-                // Cetak jawaban
-                for (int i = 0; i < questions.size(); ++i)
-                {
-                    cout << "Pertanyaan " << (i + 1) << ": " << answers[i] << endl;
-                }
-
-                /*cek hasil jawaban di array
-                for (int i = 0;i < questions.size(); i++) {
-                  cout << answers[i];
-                } */
-
-                system("PAUSE");
-                return 0;
-            }
+            cout << "Pertanyaan " << (i + 1) << ": " << answers[i] << endl;
         }
-        else
-        {
-            cout << "Tidak ada soal yang ditemukan dalam folder tersebut." << endl;
-        }
+
+        /*cek hasil jawaban di array
+        for (int i = 0;i < questions.size(); i++) {
+          cout << answers[i];
+        } */
+
+        system("PAUSE");
+        
+
+        case '2':
+        system("cls");
+        main();
         break;
     }
+    
+    
+
 
 }
+

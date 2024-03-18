@@ -8,8 +8,10 @@
 #include <string>
 #include <dirent.h>
 #include <limits>
+#include <filesystem>
 #include "../user.h"
 
+namespace fs = std::filesystem;
 using namespace std;
 
 struct Question {
@@ -26,5 +28,7 @@ char dashboard(user mhs);
 vector<string> dapatkanFileDiFolder(const string& pathFolder);
 // Fungsi untuk meminta pengguna memilih file dari daftar
 string pilihFile(const vector<string>& files);
+
+void chooseFile(const string& folder_path);
 
 #endif

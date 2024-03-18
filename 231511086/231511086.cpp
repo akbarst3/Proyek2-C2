@@ -1,6 +1,7 @@
 #include "231511086.h"
 #include <dirent.h>
 #include <limits>
+#include <iostream>
 
 using namespace std;
 
@@ -73,55 +74,49 @@ char dashboard(user mhs)
     cin >> answer;
     return answer;
 }
+// Implementasi fungsi chooseFile di luar kelas
+void chooseFile(const string& folder_path) {
+    // Menampilkan daftar file kepada pengguna
+    cout << "Pilih file yang ingin Anda buka:\n";
+    int file_count = 0;
+    for (const auto& entry : fs::directory_iterator(folder_path)) {
+        if (fs::is_regular_file(entry.path())) {
+            ++file_count;
+            cout << file_count << ". " << entry.path().filename() << endl;
+        }
+    }
 
-vector<string> dapatkanFileDiFolder(const string& pathFolder) {
-    string fullPath = "Assets/folder-soal/" + pathFolder; // Menggabungkan path relatif dengan folder-soal
-    vector<string> files;
-    DIR *direktori;
-    struct dirent *entri;
-    if ((direktori = opendir(fullPath.c_str())) != NULL) {
-        while ((entri = readdir(direktori)) != NULL) {
-            string namaFile = entri->d_name;
-            if (namaFile != "." && namaFile != "..") {
-                files.push_back(namaFile);
+    if (file_count == 0) {
+        cout << "Tidak ada file dalam folder." << endl;
+        return;
+    }
+
+    // Meminta pengguna untuk memilih file
+    int choice;
+    cout << "Pilihan Anda: ";
+    cin >> choice;
+
+    // Mengonfirmasi pilihan pengguna dan membuka file yang dipilih
+    if (choice > 0 && choice <= file_count) {
+        int current_file = 0;
+        for (const auto& entry : fs::directory_iterator(folder_path)) {
+            if (fs::is_regular_file(entry.path())) {
+                ++current_file;
+                if (current_file == choice) {
+                    string selected_file_path = folder_path + "/" + entry.path().filename().string();
+                    cout << "Anda telah memilih untuk membuka file: " << selected_file_path << endl;
+                    // Di sini Anda bisa menulis kode untuk membuka file
+                    return;
+                }
             }
         }
-        closedir(direktori);
     } else {
-        cerr << "Error: Tidak dapat membuka direktori." << endl;
+        cout << "Pilihan tidak valid." << endl;
     }
-    return files;
 }
 
-// Fungsi untuk meminta pengguna memilih file dari daftar
-string pilihFile(const vector<string>& files) {
-    int pilihan;
-    string alamatFile;
-    while (true) {
-        // Menampilkan menu berdasarkan nama file dalam folder
-        cout << "Menu File:" << endl;
-        for (size_t i = 0; i < files.size(); ++i) {
-            cout << i + 1 << ". " << files[i] << endl;
-        }
 
-        cout << "Pilih file (1-" << files.size() << "), atau 0 untuk keluar: ";
-        cin >> pilihan;
 
-        if (pilihan == 0) {
-            alamatFile = ""; // Jika pengguna memilih keluar
-            break;
-        } else if (pilihan >= 1 && pilihan <= static_cast<int>(files.size())) {
-            alamatFile = files[pilihan - 1]; // Menyimpan alamat file yang dipilih
-            break;
-        } else {
-            cout << "Pilihan tidak valid." << endl;
-        }
 
-        // Mengosongkan buffer
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    }
-
-    return alamatFile;
-}
 
 
