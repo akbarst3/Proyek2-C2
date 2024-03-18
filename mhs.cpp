@@ -4,6 +4,7 @@
 
 int main()
 {
+    string full_path;
     vector<Question> questions;
     string folder_path = "Assets/folder-soal";
     vector<string> files;
@@ -24,9 +25,9 @@ int main()
     case '1':
         system("cls");
         
-        chooseFile(folder_path);
+        full_path = chooseFile(folder_path);
 
-        questions = readQuestionsFromFile(folder_path);
+        questions = readQuestionsFromFile(full_path);
 
         // Buat array untuk menyimpan jawaban
         char answers[MAX_QUESTIONS];
