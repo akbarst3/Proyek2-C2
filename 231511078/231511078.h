@@ -1,9 +1,8 @@
 #ifndef HEAD078_H
 #define HEAD078_H
-#include "../231511091/231511091.h"
 
 #include <string>
-#include <iostream>
+#include <iostream> 
 #include <algorithm>
 using namespace std;
 
