@@ -29,6 +29,6 @@ vector<string> dapatkanFileDiFolder(const string& pathFolder);
 // Fungsi untuk meminta pengguna memilih file dari daftar
 string pilihFile(const vector<string>& files);
 
-void chooseFile(const string& folder_path);
+string chooseFile(const string& folder_path);
 
 #endif
