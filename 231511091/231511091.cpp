@@ -40,7 +40,7 @@ void removeSpaces(string &str) {
 }
 
 void toLowerCase(string &str) {
-    for (char& ch : str) {
+    for (char &ch : str) {
         if (isupper(ch)) {
             ch = tolower(ch);
         }  
@@ -68,9 +68,3 @@ void deleteSameChar(string &key)
     key = temp;
 }
 
-void firstEncryption(string &plaintext, int shift, string &key){
-    toLowerCase(key);
-    CaesarCipherEnkrip(plaintext, shift);
-    CaesarCipherEnkrip(key, shift);
-    deleteSameChar(key);
-}

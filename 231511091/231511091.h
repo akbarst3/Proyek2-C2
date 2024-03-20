@@ -14,5 +14,6 @@ void createFile(string hasilEnkrip, string namaFile, string user);
 void removeSpaces(string &str);
 void toLowerCase(string &str);
 void firstEncryption(string &plaintext, int shift, string &key);
+void deleteSameChar(string &key);
 
 #endif

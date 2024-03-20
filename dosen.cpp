@@ -34,10 +34,11 @@ int main()
         system("cls");
         buatSoal(&mataUjian, jumlahSoal, soalBaru);
         buatKunjaw(&kunjaw, mataUjian, jumlahSoal);
-        CaesarCipherEnkrip(kunjaw, jumlahSoal);
         key = mataUjian;
         toLowerCase(key);
+        CaesarCipherEnkrip(kunjaw, jumlahSoal);
         CaesarCipherEnkrip(key, jumlahSoal);
+        deleteSameChar(key);
         kunjaw = PlayfairCipher(kunjaw, key);
         createFile(kunjaw, mataUjian, "dosen");
         break;
