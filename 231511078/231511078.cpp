@@ -38,9 +38,6 @@ void encryptByPlayfairCipher(const string& table, const string& plainText, strin
 
 string PlayfairCipher(string& plainText, string& key) {
 
-    removeSpaces(plainText);
-    toLowerCase(plainText);
-
     string Matrix;
     generateKeyTable(key, Matrix);
     
