@@ -2,6 +2,7 @@
 #include <dirent.h>
 #include <limits>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -49,30 +50,42 @@ vector<Question> readQuestionsFromFile(const string &filename)
   return questions;
 }
 
-void saveAnswersToFile(const vector<Question> &questions, char answers[])
-{
-  cout << "------------------------------\n";
-  cout << "|                            |\n";
-  cout << "|       DASHBOARD UJIAN      |\n";
-  cout << "|                            |\n";
-  cout << "------------------------------\n";
-  cout << "ISI SOAL DENGAN HURUF KAPITAL (A/B/C/D)";
-  for (size_t i = 0; i < questions.size(); ++i)
-  {
-    cout << questions[i].question << endl;
-    for (size_t j = 0; j < questions[i].options.size(); ++j)
-    {
-      cout << questions[i].options[j] << endl;
-    }
-    cout << "Jawaban Anda (A/B/C/D): ";
-    cin >> answers[i];
+// Fungsi untuk menyimpan jawaban ke dalam string
+void saveAnswersToFile(const vector<Question>& questions, string& answers) {
+    cout << "------------------------------\n";
+    cout << "|                            |\n";
+    cout << "|       DASHBOARD UJIAN      |\n";
+    cout << "|                            |\n";
+    cout << "------------------------------\n";
+    cout << "ISI SOAL DENGAN HURUF KAPITAL (A/B/C/D)" << endl;
 
-    if (answers[i] != 'A' && answers[i] != 'B' && answers[i] != 'C' && answers[i] != 'D')
-    {
-      cout << "Jawaban tidak valid." << endl;
-      answers[i] = 'I'; // Ganti 'I' dengan karakter lain untuk menandakan jawaban tidak valid
+    // Menyediakan tempat untuk menyimpan jawaban sementara
+    string tempAnswers;
+
+    for (size_t i = 0; i < questions.size(); ++i) {
+        cout << questions[i].question << endl;
+        for (size_t j = 0; j < questions[i].options.size(); ++j) {
+            cout << questions[i].options[j] << endl;
+        }
+        cout << "Jawaban Anda (A/B/C/D): ";
+        char answer;
+        cin >> answer;
+
+        // Memastikan jawaban yang dimasukkan adalah huruf kapital
+        if (answer >= 'a' && answer <= 'z') {
+            answer -= ('a' - 'A'); // Konversi huruf ke huruf kapital
+        }
+
+        if (answer != 'A' && answer != 'B' && answer != 'C' && answer != 'D') {
+            cout << "Jawaban tidak valid." << endl;
+            answer = 'I'; // Ganti 'I' dengan karakter lain untuk menandakan jawaban tidak valid
+        }
+
+        tempAnswers += answer; // Menambahkan jawaban ke dalam string sementara
     }
-  }
+
+    // Menyalin jawaban dari string sementara ke variabel jawaban
+    answers = tempAnswers;
 }
 
 char dashboard(user mhs)

@@ -21,7 +21,7 @@ struct Question {
 
 vector<Question> readQuestionsFromFile(const string& filename);
 
-void saveAnswersToFile(const vector<Question>& questions, char answers[]);
+void saveAnswersToFile(const vector<Question>& questions, string& answers);
 
 char dashboard(user mhs);
 // Fungsi untuk mendapatkan daftar file dalam suatu folder

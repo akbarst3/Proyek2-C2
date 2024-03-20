@@ -1,10 +1,12 @@
 #include "231511085/231511085.h"
 #include "231511086/231511086.h"
 #include "user.h"
+#include <string>
 
 int main()
 {
     string full_path;
+    string answers;
     vector<Question> questions;
     string folder_path = "Assets/folder-soal";
     vector<string> files;
@@ -24,39 +26,22 @@ int main()
     {
     case '1':
         system("cls");
-        
+
         full_path = chooseFile(folder_path);
 
         questions = readQuestionsFromFile(full_path);
-
-        // Buat array untuk menyimpan jawaban
-        char answers[MAX_QUESTIONS];
-
-        // Simpan jawaban pengguna ke dalam array
+        
         saveAnswersToFile(questions, answers);
 
-        // Cetak jawaban
-        for (int i = 0; i < questions.size(); ++i)
-        {
-            cout << "Pertanyaan " << (i + 1) << ": " << answers[i] << endl;
-        }
-
-        /*cek hasil jawaban di array
-        for (int i = 0;i < questions.size(); i++) {
-          cout << answers[i];
-        } */
+        /* Menampilkan jawaban yang disimpan
+        cout << "Jawaban yang disimpan: " << answers << endl;
+        */
 
         system("PAUSE");
-        
 
-        case '2':
+    case '2':
         system("cls");
         main();
         break;
     }
-    
-    
-
-
 }
-
