@@ -8,7 +8,7 @@ using namespace std;
 int main() {
     // Membaca kunci jawaban dari file
     vector<string> kunci_jawaban;
-    ifstream kunciFile("../folder-kunci-jawaban/kunjawPTIK.txt");
+    ifstream kunciFile("kunjawPTIK.txt");
 
     if (kunciFile.is_open()) {
         string jawaban;
