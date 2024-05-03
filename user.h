@@ -10,4 +10,16 @@ struct user{
     string nama;
 };
 
+struct jawaban
+{
+    char jwb;
+    jawaban *next;
+};
+
+struct opsi
+{
+    string opsiJwb;
+    opsi *next;
+};
+
 #endif

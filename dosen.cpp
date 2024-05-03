@@ -15,40 +15,43 @@ int main()
     }
     else
     {
+        string mataUjian;
+        int jumlahSoal;
+        opsi *headKunjaw;
+        string key;
         choice = dashboard(loggedUser);
-    }
-    string mataUjian;
-    int jumlahSoal;
-    ujian *soalBaru;
-    string kunjaw = "";
-    string key = "";
-    switch (choice)
-    {
-    case '1':
-        system("cls");
-        cout << "Nama mata ujian: ";
-        cin >> mataUjian;
-        cout << "Jumlah soal: ";
-        cin >> jumlahSoal;
-        soalBaru = new ujian[jumlahSoal]; // alokasi memori
-        system("cls");
-        buatSoal(&mataUjian, jumlahSoal, soalBaru);
-        buatKunjaw(&kunjaw, mataUjian, jumlahSoal);
-        key = mataUjian;
-        toLowerCase(key);
-        CaesarCipherEnkrip(kunjaw, jumlahSoal);
-        CaesarCipherEnkrip(key, jumlahSoal);
-        deleteSameChar(key);
-        kunjaw = PlayfairCipher(kunjaw, key);
-        createFile(kunjaw, mataUjian, "dosen");
-        break;
-    case '2':
-        system("cls");
-        main();
-        break;
-    default:
-        cout << "---Karakter yang diinputkan tidak valid---" << endl;
-        system("cls");
-        main();
+        for (;;)
+        {
+            switch (choice)
+            {
+            case '1':
+                system("cls");
+                cout << "Nama mata ujian: ";
+                cin >> mataUjian;
+                cout << "Jumlah soal: ";
+                cin >> jumlahSoal;
+                system("cls");
+                buatSoal(mataUjian, jumlahSoal);
+                buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
+                key = mataUjian;
+                toLowerCase(key);
+                CaesarCipherEnkrip(headKunjaw, jumlahSoal);
+                CaesarCipherEnkrip(key, jumlahSoal);
+                deleteSameChar(key);
+                kunjaw = PlayfairCipher(kunjaw, key);
+                createFile(kunjaw, mataUjian, "dosen");
+                break;
+            case '2':
+                system("cls");
+                break;
+            default:
+                cout << "---Karakter yang diinputkan tidak valid---" << endl;
+                system("cls");
+            }
+            if (choice != 1)
+            {
+                break;
+            }
+        }
     }
 }

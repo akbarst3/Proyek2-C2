@@ -9,13 +9,15 @@
 struct ujian
 {
     string pertanyaan;
-    string jawaban[4];
+    opsi *opsi;
+    ujian *next;
 };
 
 char dashboard(user dosen);
+void buatSoal(string mataUjian, int jumlahSoal);
 void toUpperCase(string *str);
-void buatSoal(string *mataUjian, int jumlahSoal, ujian *soalBaru);
-void simpanKeFile(ujian *soalBaru, string namaFile, int jumlahSoal);
-void buatKunjaw(string *kunjaw, string mataUjian, int jumlahSoal);
+void soalBaru(ujian *head, int jumlahSoal);
+void simpanKeFile(ujian *head, string namaFile, int jumlahSoal);
+void buatKunjaw(opsi *headKunjaw, string mataUjian, int jumlahSoal);
 
 #endif

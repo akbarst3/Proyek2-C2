@@ -20,48 +20,100 @@ char dashboard(user dosen)
     return answer;
 }
 
+void buatSoal(string mataUjian, int jumlahSoal)
+{
+    toUpperCase(&mataUjian);
+    cout << "-------------------------------------------------\n";
+    cout << "     UJIAN " << mataUjian << '\n';
+    cout << "-------------------------------------------------\n";
+    ujian *head;
+    soalBaru(head, jumlahSoal);
+    cin.ignore();
+    simpanKeFile(head, mataUjian, jumlahSoal);
+}
+
 void toUpperCase(string *str)
 {
     transform(str->begin(), str->end(), str->begin(), ::toupper);
 }
 
-void buatSoal(string *mataUjian, int jumlahSoal, ujian *soalBaru)
+void soalBaru(ujian *head, int jumlahSoal)
 {
-    toUpperCase(*(&mataUjian));
-    cout << "-------------------------------------------------\n";
-    cout << "     UJIAN " << *mataUjian << '\n';
-    cout << "-------------------------------------------------\n";
-    cin.ignore();
-
+    opsi *headOpsi;
     for (int i = 0; i < jumlahSoal; i++)
     {
+        ujian *soal = (ujian *)malloc(sizeof(ujian));
+        if (soal == NULL)
+        {
+            cout << "Memori Full\n";
+            return;
+        }
+        soal->next = NULL;
         cout << i + 1 << ". ";
-        getline(cin, soalBaru[i].pertanyaan);
+        getline(cin, soal->pertanyaan);
         for (int j = 0; j < 4; j++)
         {
+            opsi *jawaban = (opsi *)malloc(sizeof(opsi));
+            if (jawaban == NULL)
+            {
+                cout << "Memori Full\n";
+                return;
+            }
+            jawaban->next = NULL;
             cout << " " << char('a' + j) << ". ";
-            getline(cin, soalBaru[i].jawaban[j]);
+            getline(cin, jawaban->opsiJwb);
+            if (headOpsi == NULL)
+            {
+                headOpsi = jawaban;
+            }
+            else
+            {
+                opsi *temp = headOpsi;
+                while (temp->next != NULL)
+                {
+                    temp = temp->next;
+                }
+                temp->next = jawaban;
+            }
         }
-        cout << endl
-             << endl;
+        cout << "\n\n";
+        if (head == NULL)
+        {
+            head = soal;
+        }
+        else
+        {
+            ujian *temp = head;
+            while (temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            temp->next = soal;
+        }
     }
-    simpanKeFile(soalBaru, *mataUjian, jumlahSoal);
+    head->opsi = headOpsi;
 }
 
-void simpanKeFile(ujian *soalBaru, string namaFile, int jumlahSoal)
+void simpanKeFile(ujian *head, string namaFile, int jumlahSoal)
 {
     ofstream file("assets/folder-soal/" + namaFile + ".txt");
+    ujian *temp = head;
     if (file.is_open())
     {
-        for (int i = 0; i < jumlahSoal; i++)
+        int i = 0;
+        while (temp != NULL)
         {
-            file << i + 1 << ". " << soalBaru[i].pertanyaan << endl;
-            for (int j = 0; j < 4; j++)
+            file << i + 1 << ". " << temp->pertanyaan << endl;
+            opsi *tempOpsi = temp->opsi;
+            int j = 0;
+            while (tempOpsi != NULL)
             {
-                file << " " << char('A' + j) << ". " << soalBaru[i].jawaban[j] << " ";
+                file << " " << char('A' + j) << ". " << tempOpsi->opsiJwb << " ";
+                j++;
+                tempOpsi = tempOpsi->next;
             }
-            file << endl
-                 << endl;
+            file << "\n\n";
+            temp = temp->next;
         }
         file.close();
         cout << "Soal telah disimpan ke dalam folder-soal dengan nama file '" << namaFile << ".txt'" << endl;
@@ -72,31 +124,54 @@ void simpanKeFile(ujian *soalBaru, string namaFile, int jumlahSoal)
     }
 }
 
-void buatKunjaw(string *kunjaw, string mataUjian, int jumlahSoal)
+void buatKunjaw(opsi *headKunjaw, string mataUjian, int jumlahSoal)
 {
     char temp;
     string format = "abcd";
-    cout << "Buat Kunci Jawaban " << mataUjian
-         << " (a/b/c/d)" << endl;
-    int soal = 1;
-    while (soal <= jumlahSoal)
+    toUpperCase(&mataUjian);
+    cout << "Buat Kunci Jawaban " << mataUjian << "(a/b/c/d)\n";
+    int nomor = 1;
+    while (nomor <= jumlahSoal)
     {
-        cout << soal << ". ";
+        opsi *jawaban = (opsi *)malloc(sizeof(opsi));
+        if (jawaban == NULL)
+        {
+            cout << "Memori Full\n";
+            return;
+        }
+        jawaban->next = NULL;
+        cout << nomor << ". ";
         cin >> temp;
         bool valid = 0;
         for (char c : format)
         {
             if (temp == c)
             {
-                *kunjaw += temp;
+                jawaban->opsiJwb = temp;
                 valid = 1;
             }
         }
         if (!valid)
         {
             cout << "Input salah! (a/b/c/d)" << endl;
-        } else {
-            soal++;
+        }
+        else
+        {
+            nomor++;
+        }
+        
+        if (headKunjaw == NULL)
+        {
+            headKunjaw = jawaban;
+        }
+        else
+        {
+            opsi *temp = headKunjaw;
+            while (temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            temp->next = jawaban;
         }
     }
 }
