@@ -17,7 +17,7 @@ int main()
     {
         string mataUjian;
         int jumlahSoal;
-        opsi *headKunjaw;
+        jawaban *headKunjaw;
         string key;
         choice = dashboard(loggedUser);
         for (;;)

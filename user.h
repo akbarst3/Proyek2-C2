@@ -12,14 +12,8 @@ struct user{
 
 struct jawaban
 {
-    char jwb;
-    jawaban *next;
-};
-
-struct opsi
-{
     string opsiJwb;
-    opsi *next;
+    jawaban *next;
 };
 
 #endif

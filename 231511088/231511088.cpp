@@ -39,7 +39,7 @@ void toUpperCase(string *str)
 
 void soalBaru(ujian *head, int jumlahSoal)
 {
-    opsi *headOpsi;
+    jawaban *headOpsi;
     for (int i = 0; i < jumlahSoal; i++)
     {
         ujian *soal = (ujian *)malloc(sizeof(ujian));
@@ -53,27 +53,27 @@ void soalBaru(ujian *head, int jumlahSoal)
         getline(cin, soal->pertanyaan);
         for (int j = 0; j < 4; j++)
         {
-            opsi *jawaban = (opsi *)malloc(sizeof(opsi));
-            if (jawaban == NULL)
+            jawaban *opsiJawab = (jawaban *)malloc(sizeof(jawaban));
+            if (opsiJawab == NULL)
             {
                 cout << "Memori Full\n";
                 return;
             }
-            jawaban->next = NULL;
+            opsiJawab->next = NULL;
             cout << " " << char('a' + j) << ". ";
-            getline(cin, jawaban->opsiJwb);
+            getline(cin, opsiJawab->opsiJwb);
             if (headOpsi == NULL)
             {
-                headOpsi = jawaban;
+                headOpsi = opsiJawab;
             }
             else
             {
-                opsi *temp = headOpsi;
+                jawaban *temp = headOpsi;
                 while (temp->next != NULL)
                 {
                     temp = temp->next;
                 }
-                temp->next = jawaban;
+                temp->next = opsiJawab;
             }
         }
         cout << "\n\n";
@@ -104,7 +104,7 @@ void simpanKeFile(ujian *head, string namaFile, int jumlahSoal)
         while (temp != NULL)
         {
             file << i + 1 << ". " << temp->pertanyaan << endl;
-            opsi *tempOpsi = temp->opsi;
+            jawaban *tempOpsi = temp->opsi;
             int j = 0;
             while (tempOpsi != NULL)
             {
@@ -124,7 +124,7 @@ void simpanKeFile(ujian *head, string namaFile, int jumlahSoal)
     }
 }
 
-void buatKunjaw(opsi *headKunjaw, string mataUjian, int jumlahSoal)
+void buatKunjaw(jawaban *headKunjaw, string mataUjian, int jumlahSoal)
 {
     char temp;
     string format = "abcd";
@@ -133,13 +133,13 @@ void buatKunjaw(opsi *headKunjaw, string mataUjian, int jumlahSoal)
     int nomor = 1;
     while (nomor <= jumlahSoal)
     {
-        opsi *jawaban = (opsi *)malloc(sizeof(opsi));
-        if (jawaban == NULL)
+        jawaban *kunjaw = (jawaban *)malloc(sizeof(jawaban));
+        if (kunjaw == NULL)
         {
             cout << "Memori Full\n";
             return;
         }
-        jawaban->next = NULL;
+        kunjaw->next = NULL;
         cout << nomor << ". ";
         cin >> temp;
         bool valid = 0;
@@ -147,7 +147,7 @@ void buatKunjaw(opsi *headKunjaw, string mataUjian, int jumlahSoal)
         {
             if (temp == c)
             {
-                jawaban->opsiJwb = temp;
+                kunjaw->opsiJwb = temp;
                 valid = 1;
             }
         }
@@ -162,16 +162,16 @@ void buatKunjaw(opsi *headKunjaw, string mataUjian, int jumlahSoal)
         
         if (headKunjaw == NULL)
         {
-            headKunjaw = jawaban;
+            headKunjaw = kunjaw;
         }
         else
         {
-            opsi *temp = headKunjaw;
+            jawaban *temp = headKunjaw;
             while (temp->next != NULL)
             {
                 temp = temp->next;
             }
-            temp->next = jawaban;
+            temp->next = kunjaw;
         }
     }
 }

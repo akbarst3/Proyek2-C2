@@ -9,7 +9,7 @@
 struct ujian
 {
     string pertanyaan;
-    opsi *opsi;
+    jawaban *opsi;
     ujian *next;
 };
 
@@ -18,6 +18,6 @@ void buatSoal(string mataUjian, int jumlahSoal);
 void toUpperCase(string *str);
 void soalBaru(ujian *head, int jumlahSoal);
 void simpanKeFile(ujian *head, string namaFile, int jumlahSoal);
-void buatKunjaw(opsi *headKunjaw, string mataUjian, int jumlahSoal);
+void buatKunjaw(jawaban *headKunjaw, string mataUjian, int jumlahSoal);
 
 #endif
