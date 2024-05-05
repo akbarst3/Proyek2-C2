@@ -14,9 +14,9 @@ struct Node {
 const string list1 = "abcdefghiklmnopqrstuvwxyz";
 Node* newNode(char data);
 void insertAtEnd(Node** head_ref, char data);
-void generateKeyTable(const string& key, string& table);
+void generateKeyTable(const string& key, Node** head_ref);
 Node* searchNode(Node* head, char ch);
-void encryptByPlayfairCipher(const string& table, const string& plainText, string& cipherText);
+void encryptByPlayfairCipher(Node* table, const string& plainText, string& cipherText);
 string PlayfairCipher(string& plainText, string& key);
 
 #endif 
