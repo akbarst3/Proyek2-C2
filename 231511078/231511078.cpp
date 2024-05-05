@@ -1,5 +1,12 @@
 #include "231511078.h"
 
+Node* newNode(char data) {
+  Node* newNode = new Node;
+  newNode->data = data;
+  newNode->next = nullptr;
+  return newNode;
+}
+
 void generateKeyTable(const string& key, string& table) {
     table = key;
     for (char ch : list1) {
