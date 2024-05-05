@@ -7,6 +7,19 @@ Node* newNode(char data) {
   return newNode;
 }
 
+void insertAtEnd(Node** head_ref, char data) {
+  Node* new_node = newNode(data);
+  if (*head_ref == nullptr) {
+    *head_ref = new_node;
+    return;
+  }
+  Node* last = *head_ref;
+  while (last->next != nullptr) {
+    last = last->next;
+  }
+  last->next = new_node;
+}
+
 void generateKeyTable(const string& key, string& table) {
     table = key;
     for (char ch : list1) {
@@ -14,6 +27,16 @@ void generateKeyTable(const string& key, string& table) {
             table += ch;
         }
     }
+}
+
+Node* searchNode(Node* head, char ch) {
+  while (head != nullptr) {
+    if (head->data == ch) {
+      return head;
+    }
+    head = head->next;
+  }
+  return nullptr;
 }
 
 void encryptByPlayfairCipher(const string& table, const string& plainText, string& cipherText) {
