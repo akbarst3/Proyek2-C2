@@ -80,3 +80,68 @@ user loginDosen()
     return userLogged;
 }
 
+void bacafile(string path, jawaban *headkunjaw)
+{ //  
+    ifstream bacaFile(path);
+    if (bacaFile.is_open())
+    {
+        string temp;
+        while (getline(bacaFile, temp))
+        {
+            jawaban *nodejwb = new jawaban;
+            nodejwb->opsiJwb = temp;
+            if (headkunjaw == NULL)
+            {
+                headkunjaw = nodejwb;
+            }
+            else
+            {
+                jawaban *temp = headkunjaw;
+                while (temp->next != NULL)
+                {
+                    temp = temp->next;
+                }
+                temp->next = nodejwb;
+            }
+        }
+
+        bacaFile.close();
+    }
+    else
+    {
+        cout << "Gagal membuka file kunci jawaban." << endl;
+        return;
+    }
+}
+
+void nilai(jawaban *headKunjaw, jawaban *headJawab)
+{
+    jawaban *tempKunjaw = headKunjaw;
+    jawaban *tempJawab = headJawab;
+    int jumlahSoal;
+    while (tempKunjaw->next != NULL)
+    {
+        jumlahSoal++;
+        tempKunjaw = tempKunjaw->next;
+    }
+    int poin = 100 / jumlahSoal;
+    int nilai = 0;
+
+    for (int i = 0; i <= jumlahSoal; i++)
+    {
+        if (tempJawab != NULL)
+        {
+            if (tempKunjaw->opsiJwb == tempJawab->opsiJwb)
+            {
+                nilai = nilai + poin;
+            }
+
+            tempKunjaw = tempKunjaw->next;
+            tempJawab = tempJawab->next;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
