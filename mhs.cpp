@@ -30,12 +30,9 @@ int main()
         full_path = chooseFile(folder_path);
 
         questions = readQuestionsFromFile(full_path);
-        
-        saveAnswersToFile(questions, answers);
 
-        /* Menampilkan jawaban yang disimpan
-        cout << "Jawaban yang disimpan: " << answers << endl;
-        */
+        Node *head = NULL;                        // Deklarasikan pointer head
+        saveAnswersToLinkedList(questions, head); // Simpan jawaban ke linked list
 
         system("PAUSE");
 

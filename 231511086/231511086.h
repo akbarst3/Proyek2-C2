@@ -11,8 +11,13 @@
 #include <filesystem>
 #include "../user.h"
 
-namespace fs = std::filesystem;
+namespace fs = filesystem;
 using namespace std;
+
+struct Node {
+  char answer; // Jawaban pengguna (A/B/C/D)
+  Node* next; // Pointer ke node berikutnya
+};
 
 struct Question {
   string question;
@@ -21,14 +26,10 @@ struct Question {
 
 vector<Question> readQuestionsFromFile(const string& filename);
 
-void saveAnswersToFile(const vector<Question>& questions, string& answers);
+void saveAnswersToLinkedList(const vector<Question>& questions, Node*& head);
 
 char dashboard(user mhs);
-// Fungsi untuk mendapatkan daftar file dalam suatu folder
-vector<string> dapatkanFileDiFolder(const string& pathFolder);
 // Fungsi untuk meminta pengguna memilih file dari daftar
-string pilihFile(const vector<string>& files);
-
 string chooseFile(const string& folder_path);
 
 #endif
