@@ -4,26 +4,23 @@
 #include "231511088/231511088.h"
 #include "231511091/231511091.h"
 
-int main()
-{
+int main() {
     user loggedUser = loginDosen();
     char choice;
-    if (loggedUser.nama == "")
-    {
+
+    if (loggedUser.nama == "") {
         cout << "Login gagal" << endl;
         main();
-    }
-    else
-    {
+    } else {
         string mataUjian;
         int jumlahSoal;
         jawaban *headKunjaw;
-        jawaban *headkey;
+        string key;
+
         choice = dashboard(loggedUser);
-        for (;;)
-        {
-            switch (choice)
-            {
+
+        while (true) {
+            switch (choice) {
             case '1':
                 system("cls");
                 cout << "Nama mata ujian: ";
@@ -31,25 +28,30 @@ int main()
                 cout << "Jumlah soal: ";
                 cin >> jumlahSoal;
                 system("cls");
+
                 buatSoal(mataUjian, jumlahSoal);
                 buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
-                toLowerCase(mataUjian);
+
+                key = mataUjian;
+                toLowerCase(key);
                 CaesarCipherEnkrip(headKunjaw, jumlahSoal);
-                buatkey (mataUjian, headkey);
-                CaesarCipherEnkrip(headkey, jumlahSoal);
-                deleteSameChar(headkey);
-                headKunjaw = PlayfairCipher(headKunjaw, headkey);
-                createFile(headKunjaw, mataUjian, "dosen");
+                CaesarCipherEnkrip(key, jumlahSoal);
+                deleteSameChar(key);
+
+                kunjaw = PlayfairCipher(kunjaw, key);
+                createFile(kunjaw, mataUjian, "dosen");
                 break;
+
             case '2':
                 system("cls");
                 break;
+
             default:
                 cout << "---Karakter yang diinputkan tidak valid---" << endl;
                 system("cls");
             }
-            if (choice != 1)
-            {
+
+            if (choice != '1') {
                 break;
             }
         }
