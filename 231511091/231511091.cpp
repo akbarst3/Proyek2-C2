@@ -1,20 +1,69 @@
 #include "231511091.h"
+#include "../user.h"
 
+void addNode(jawaban* head, string& data) 
+{
+    jawaban* newNode = new jawaban;
+    newNode->opsiJwb = data;
+    newNode->next = nullptr;
 
-// Fungsi Caesar Cipher
-void CaesarCipherEnkrip(string &plaintext, int shift) {
-
-    string cipher = "";
-    string add = "x";
-    for (char c : plaintext) {
-        if (isalpha(c)) {
-            char base = isupper(c) ? 'A' : 'a';
-            c = ((c - base) + shift) % 26 + base;
+    if (head == nullptr) 
+    {
+        head = newNode;
+    } 
+    else 
+    {
+        jawaban* current = head;
+        while (current->next != nullptr) 
+        {
+            current = current->next;
         }
-        cipher += c + add;
+        current->next = newNode;
     }
-    plaintext = cipher;
+}
 
+
+void CaesarCipherEncrypt(jawaban* head, int shift) 
+{
+    jawaban* current = head;
+    while (current != nullptr) 
+    {
+        std::string cipher = "";
+        std::string add = "x";
+        for (char c : current->opsiJwb) 
+        {
+            if (isalpha(c)) 
+            {
+                char base = isupper(c) ? 'A' : 'a';
+                c = ((c - base) + shift) % 26 + base;
+            }
+            cipher += c + add;
+        }
+        current->opsiJwb = cipher;
+        current = current->next;
+    }
+}
+
+void displayList(jawaban* head) 
+{
+    jawaban* current = head;
+    while (current != nullptr) 
+    {
+        std::cout << current->opsiJwb << std::endl;
+        current = current->next;
+    }
+}
+
+void freeList(jawaban* head) 
+{
+    jawaban* current = head;
+    while (current != nullptr) 
+    {
+        jawaban* next = current->next;
+        delete current;
+        current = next;
+    }
+    head = nullptr;
 }
 
 void createFile(string hasilEnkrip, string namaFile, string user) {
