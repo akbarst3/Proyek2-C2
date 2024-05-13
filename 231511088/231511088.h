@@ -13,10 +13,10 @@ struct ujian
     ujian *next;
 };
 
-char dashboard(user dosen);
+char dashboardDosen(user dosen);
 void buatSoal(string mataUjian, int jumlahSoal);
 void toUpperCase(string *str);
-void soalBaru(ujian *head, int jumlahSoal);
+void soalBaru(ujian **head, int jumlahSoal);
 void simpanKeFile(ujian *head, string namaFile, int jumlahSoal);
 void buatKunjaw(jawaban *headKunjaw, string mataUjian, int jumlahSoal);
 
