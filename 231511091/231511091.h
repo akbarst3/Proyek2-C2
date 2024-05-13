@@ -6,14 +6,16 @@
 #include <sstream>
 #include <cctype>
 #include <algorithm>
+#include "../user.h"
 
 using namespace std;
 
-void CaesarCipherEnkrip(string &plaintext, int shift);
+void CaesarCipherEnkrip(jawaban* head, int shift);
 void createFile(string hasilEnkrip, string namaFile, string user);
 void removeSpaces(string &str);
 void toLowerCase(string &str);
-void deleteSameChar(string &key);
+void deleteSameChar(jawaban* headkey);
 void addNode(jawaban* head, string& data);
+void buatkey (string key ,jawaban* headkey);
 
 #endif

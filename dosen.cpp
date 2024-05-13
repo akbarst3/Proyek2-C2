@@ -18,7 +18,7 @@ int main()
         string mataUjian;
         int jumlahSoal;
         jawaban *headKunjaw;
-        string key;
+        jawaban *headkey;
         choice = dashboard(loggedUser);
         for (;;)
         {
@@ -33,13 +33,13 @@ int main()
                 system("cls");
                 buatSoal(mataUjian, jumlahSoal);
                 buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
-                key = mataUjian;
-                toLowerCase(key);
+                toLowerCase(mataUjian);
                 CaesarCipherEnkrip(headKunjaw, jumlahSoal);
-                CaesarCipherEnkrip(key, jumlahSoal);
-                deleteSameChar(key);
-                kunjaw = PlayfairCipher(kunjaw, key);
-                createFile(kunjaw, mataUjian, "dosen");
+                buatkey (mataUjian, headkey);
+                CaesarCipherEnkrip(headkey, jumlahSoal);
+                deleteSameChar(headkey);
+                headKunjaw = PlayfairCipher(headKunjaw, headkey);
+                createFile(headKunjaw, mataUjian, "dosen");
                 break;
             case '2':
                 system("cls");
