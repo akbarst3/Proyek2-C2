@@ -145,3 +145,16 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
         }
     }
 }
+
+string getTopik(string path)
+{
+    size_t pos = path.find_last_of('/'); // Mencari posisi terakhir dari '/'
+    if (pos == string::npos)
+    {
+        return path; // Jika '/' tidak ditemukan, kembalikan path asli
+    }
+    else
+    {
+        return path.substr(pos + 1); // Kembalikan string setelah karakter '/'
+    }
+}
