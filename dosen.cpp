@@ -4,9 +4,8 @@
 #include "231511088/231511088.h"
 #include "231511091/231511091.h"
 
-int main()
-{
-    user loggedUser = loginDosen();
+int main() {
+    user loggedUser;
     char choice;
     if (loggedUser.nama == "")
     {
@@ -38,8 +37,8 @@ int main()
                 buatkey (mataUjian, headkey);
                 CaesarCipherEnkrip(headkey, jumlahSoal);
                 deleteSameChar(headkey);
-               // headKunjaw = PlayfairCipher(headKunjaw, headkey);
-                createFile(headKunjaw, "dosen", mataUjian);
+                headKunjaw = PlayfairCipher(headKunjaw, headkey);
+                createFile(headKunjaw, mataUjian, "dosen");
                 break;
             case '2':
                 system("cls");

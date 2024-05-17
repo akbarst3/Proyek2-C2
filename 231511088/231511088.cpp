@@ -1,14 +1,11 @@
 #include "231511088.h"
 
-char dashboard(user dosen)
+char dashboardDosen(user dosen)
 {
     system("cls");
     char answer;
-    // Tampilkan dashboard
     cout << "------------------------------\n";
-    cout << "|                            |\n";
     cout << "|       DASHBOARD DOSEN      |\n";
-    cout << "|                            |\n";
     cout << "------------------------------\n";
     cout << "Selamat datang di dasbor dosen" << endl;
     cout << dosen.nama << endl;
@@ -26,10 +23,16 @@ void buatSoal(string mataUjian, int jumlahSoal)
     cout << "-------------------------------------------------\n";
     cout << "     UJIAN " << mataUjian << '\n';
     cout << "-------------------------------------------------\n";
-    ujian *head;
-    soalBaru(head, jumlahSoal);
+    ujian *head = NULL;
+    soalBaru(&head, jumlahSoal);
     cin.ignore();
     simpanKeFile(head, mataUjian, jumlahSoal);
+    // Bebaskan memori
+    while (head != NULL) {
+        ujian *temp = head;
+        head = head->next;
+        delete temp;
+    }
 }
 
 void toUpperCase(string *str)
@@ -37,61 +40,44 @@ void toUpperCase(string *str)
     transform(str->begin(), str->end(), str->begin(), ::toupper);
 }
 
-void soalBaru(ujian *head, int jumlahSoal)
+void soalBaru(ujian **head, int jumlahSoal)
 {
-    jawaban *headOpsi;
+    jawaban *headOpsi = NULL;
+    cin.ignore();
     for (int i = 0; i < jumlahSoal; i++)
     {
-        ujian *soal = (ujian *)malloc(sizeof(ujian));
-        if (soal == NULL)
-        {
-            cout << "Memori Full\n";
-            return;
-        }
+        ujian *soal = new ujian();
         soal->next = NULL;
         cout << i + 1 << ". ";
         getline(cin, soal->pertanyaan);
         for (int j = 0; j < 4; j++)
         {
-            jawaban *opsiJawab = (jawaban *)malloc(sizeof(jawaban));
-            if (opsiJawab == NULL)
-            {
-                cout << "Memori Full\n";
-                return;
-            }
+            jawaban *opsiJawab = new jawaban();
             opsiJawab->next = NULL;
             cout << " " << char('a' + j) << ". ";
             getline(cin, opsiJawab->opsiJwb);
-            if (headOpsi == NULL)
-            {
+            if (headOpsi == NULL) {
                 headOpsi = opsiJawab;
-            }
-            else
-            {
+            } else {
                 jawaban *temp = headOpsi;
-                while (temp->next != NULL)
-                {
+                while (temp->next != NULL) {
                     temp = temp->next;
                 }
                 temp->next = opsiJawab;
             }
         }
         cout << "\n\n";
-        if (head == NULL)
-        {
-            head = soal;
-        }
-        else
-        {
-            ujian *temp = head;
-            while (temp->next != NULL)
-            {
+        if (*head == NULL) {
+            *head = soal;
+        } else {
+            ujian *temp = *head;
+            while (temp->next != NULL) {
                 temp = temp->next;
             }
             temp->next = soal;
         }
     }
-    head->opsi = headOpsi;
+    (*head)->opsi = headOpsi;
 }
 
 void simpanKeFile(ujian *head, string namaFile, int jumlahSoal)
@@ -108,12 +94,12 @@ void simpanKeFile(ujian *head, string namaFile, int jumlahSoal)
             int j = 0;
             while (tempOpsi != NULL)
             {
-                file << " " << char('A' + j) << ". " << tempOpsi->opsiJwb << " ";
-                j++;
+                file << " " << char('A' + j) << ". " << tempOpsi->opsiJwb << endl;
                 tempOpsi = tempOpsi->next;
             }
-            file << "\n\n";
+            file << "\n";
             temp = temp->next;
+            i++;
         }
         file.close();
         cout << "Soal telah disimpan ke dalam folder-soal dengan nama file '" << namaFile << ".txt'" << endl;
@@ -133,12 +119,7 @@ void buatKunjaw(jawaban *headKunjaw, string mataUjian, int jumlahSoal)
     int nomor = 1;
     while (nomor <= jumlahSoal)
     {
-        jawaban *kunjaw = (jawaban *)malloc(sizeof(jawaban));
-        if (kunjaw == NULL)
-        {
-            cout << "Memori Full\n";
-            return;
-        }
+        jawaban *kunjaw = new jawaban();
         kunjaw->next = NULL;
         cout << nomor << ". ";
         cin >> temp;
@@ -154,6 +135,7 @@ void buatKunjaw(jawaban *headKunjaw, string mataUjian, int jumlahSoal)
         if (!valid)
         {
             cout << "Input salah! (a/b/c/d)" << endl;
+            continue;
         }
         else
         {

@@ -14,11 +14,6 @@
 namespace fs = filesystem;
 using namespace std;
 
-struct Node {
-  char answer; // Jawaban pengguna (A/B/C/D)
-  Node* next; // Pointer ke node berikutnya
-};
-
 struct Question {
   string question;
   vector<string> options;
@@ -26,7 +21,7 @@ struct Question {
 
 vector<Question> readQuestionsFromFile(const string& filename);
 
-void saveAnswersToLinkedList(const vector<Question>& questions, Node*& head);
+void saveAnswersToLinkedList(const vector<Question>& questions, jawaban*& head);
 
 char dashboard(user mhs);
 // Fungsi untuk meminta pengguna memilih file dari daftar
