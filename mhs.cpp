@@ -10,6 +10,7 @@ int main()
     vector<Question> questions;
     string folder_path = "Assets/folder-soal";
     vector<string> files;
+    jawaban *head = NULL;
     user loggedUser = loginMhs();
     char choice;
     if (loggedUser.nama == "")
@@ -31,7 +32,6 @@ int main()
 
         questions = readQuestionsFromFile(full_path);
 
-        jawaban *head = NULL;                        // Deklarasikan pointer head
         saveAnswersToLinkedList(questions, head); // Simpan jawaban ke linked list
 
         system("PAUSE");
