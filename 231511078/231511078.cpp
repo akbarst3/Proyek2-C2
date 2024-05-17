@@ -1,85 +1,107 @@
 #include "231511078.h"
 
-Node* newNode(char data) {
-  Node* newNode = new Node;
-  newNode->data = data;
-  newNode->next = nullptr;
-  return newNode;
-}
-
-void insertAtEnd(Node** head_ref, char data) {
-  Node* new_node = newNode(data);
-  if (*head_ref == nullptr) {
-    *head_ref = new_node;
-    return;
-  }
-  Node* last = *head_ref;
-  while (last->next != nullptr) {
-    last = last->next;
-  }
-  last->next = new_node;
-}
-
-void generateKeyTable(const string& key, Node** head_ref) {
-  *head_ref = nullptr; 
-  for (char ch : key) {
-    insertAtEnd(head_ref, ch);
-  }
-  for (char ch : list1) {
-    if (key.find(ch) == string::npos) {
-      insertAtEnd(head_ref, ch);
+void append(Node*& head, char data) {
+    Node* newNode = new Node(data);
+    if (!head) {
+        head = newNode;
+        return;
     }
-  }
+    Node* temp = head;
+    while (temp->next) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
 }
 
-Node* searchNode(Node* head, char ch) {
-  while (head != nullptr) {
-    if (head->data == ch) {
-      return head;
+void appendMatrixNode(MatrixNode*& head, char data) {
+    MatrixNode* newNode = new MatrixNode(data);
+    if (!head) {
+        head = newNode;
+        return;
     }
-    head = head->next;
-  }
-  return nullptr;
+    MatrixNode* temp = head;
+    while (temp->next) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
 }
 
-void encryptByPlayfairCipher(Node* table, const string& plainText, string& cipherText) {
-  cipherText = "";
-  for (size_t i = 0; i < plainText.length(); i += 2) {
-    char ch1 = plainText[i];
-    char ch2 = plainText[i + 1];
-
-    Node* node1 = searchNode(table, ch1);
-    Node* node2 = searchNode(table, ch2);
-
-    if (node1 == nullptr || node2 == nullptr) {
-      continue; 
+void generateKeyTable(Node* key, MatrixNode*& table) {
+    Node* temp = key;
+    while (temp) {
+        bool flag = false;
+        MatrixNode* mTemp = table;
+        while (mTemp) {
+            if (mTemp->data == temp->data) {
+                flag = true;
+                break;
+            }
+            mTemp = mTemp->next;
+        }
+        if (!flag) {
+            appendMatrixNode(table, temp->data);
+        }
+        temp = temp->next;
     }
-
-    int row1 = (node1->next) ? (node1->next)->data - 'a' : node1->data - 'a';
-    int col1 = node1->data - 'a';
-    int row2 = (node2->next) ? (node2->next)->data - 'a' : node2->data - 'a';
-    int col2 = node2->data - 'a';
-
-    if (row1 == row2) {
-      cipherText += table->next->data + ((col1 + 1) % 5);
-      cipherText += table->next->data + ((col2 + 1) % 5);
-    } else if (col1 == col2) {
-      cipherText += table->next->data + (((row1 + 1) % 5) * 5 + col1);
-      cipherText += table->next->data + (((row2 + 1) % 5) * 5 + col2);
-    } else {
-      cipherText += table->next->data + (row1 * 5 + col2);
-      cipherText += table->next->data + (row2 * 5 + col1);
+    for (char ch : list1) {
+        bool flag = false;
+        MatrixNode* mTemp = table;
+        while (mTemp) {
+            if (mTemp->data == ch) {
+                flag = true;
+                break;
+            }
+            mTemp = mTemp->next;
+        }
+        if (!flag) {
+            appendMatrixNode(table, ch);
+        }
     }
-
-    table = table->next; 
-  }
 }
 
-string PlayfairCipher(string& plainText, string& key) {
-  Node* table = nullptr;
-  generateKeyTable(key, &table);
+void findPosition(MatrixNode* table, char letter, int& row, int& col) {
+    MatrixNode* temp = table;
+    int index = 0;
+    while (temp) {
+        if (temp->data == letter) {
+            row = index / 5;
+            col = index % 5;
+            return;
+        }
+        temp = temp->next;
+        index++;
+    }
+}
 
-  string CipherText;
-  encryptByPlayfairCipher(table, plainText, CipherText);
-  return CipherText;
+char getCharAt(MatrixNode* table, int row, int col) {
+    MatrixNode* temp = table;
+    int index = 0;
+    while (temp) {
+        if (index == row * 5 + col) {
+            return temp->data;
+        }
+        temp = temp->next;
+        index++;
+    }
+    return '\0';
+}
+
+void encryptByPlayfairCipher(MatrixNode* table, Node* plainText, Node*& cipherText) {
+    Node* temp = plainText;
+    while (temp && temp->next) {
+        int row1, col1, row2, col2;
+        findPosition(table, temp->data, row1, col1);
+        findPosition(table, temp->next->data, row2, col2);
+        if (row1 == row2) {
+            append(cipherText, getCharAt(table, row1, (col1 + 1) % 5));
+            append(cipherText, getCharAt(table, row2, (col2 + 1) % 5));
+        } else if (col1 == col2) {
+            append(cipherText, getCharAt(table, (row1 + 1) % 5, col1));
+            append(cipherText, getCharAt(table, (row2 + 1) % 5, col2));
+        } else {
+            append(cipherText, getCharAt(table, row1, col2));
+            append(cipherText, getCharAt(table, row2, col1));
+        }
+        temp = temp->next->next;
+    }
 }

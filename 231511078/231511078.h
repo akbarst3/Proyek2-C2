@@ -7,16 +7,28 @@
 using namespace std;
 
 struct Node {
-  char data;
-  Node* next;
+    char data;
+    Node* next;
+    Node(char d);
 };
 
-const string list1 = "abcdefghiklmnopqrstuvwxyz";
-Node* newNode(char data);
-void insertAtEnd(Node** head_ref, char data);
-void generateKeyTable(const string& key, Node** head_ref);
-Node* searchNode(Node* head, char ch);
-void encryptByPlayfairCipher(Node* table, const string& plainText, string& cipherText);
-string PlayfairCipher(string& plainText, string& key);
+struct MatrixNode {
+    char data;
+    MatrixNode* next;
+    MatrixNode(char d);
+};
 
-#endif 
+string list1 = "abcdefghiklmnopqrstuvwxyz"; 
+
+Node::Node(char d) : data(d), next(nullptr) {}
+MatrixNode::MatrixNode(char d) : data(d), next(nullptr) {}
+
+// Function declarations
+void append(Node*& head, char data);
+void appendMatrixNode(MatrixNode*& head, char data);
+void generateKeyTable(Node* key, MatrixNode*& table);
+void findPosition(MatrixNode* table, char letter, int& row, int& col);
+char getCharAt(MatrixNode* table, int row, int col);
+void encryptByPlayfairCipher(MatrixNode* table, Node* plainText, Node*& cipherText);
+
+#endif
