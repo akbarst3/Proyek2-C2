@@ -1,20 +1,19 @@
 #include "231511091.h"
-#include "../user.h"
 
-void addNode(jawaban* head, string& data) 
+void addNode(jawaban *head, string &data)
 {
-    jawaban* newNode = new jawaban;
+    jawaban *newNode = new jawaban;
     newNode->opsiJwb = data;
     newNode->next = nullptr;
 
-    if (head == nullptr) 
+    if (head == nullptr)
     {
         head = newNode;
-    } 
-    else 
+    }
+    else
     {
-        jawaban* current = head;
-        while (current->next != nullptr) 
+        jawaban *current = head;
+        while (current->next != nullptr)
         {
             current = current->next;
         }
@@ -22,17 +21,16 @@ void addNode(jawaban* head, string& data)
     }
 }
 
-
-void CaesarCipherEncrypt(jawaban* head, int shift) 
+void CaesarCipherEnkrip(jawaban *head, int shift)
 {
-    jawaban* current = head;
-    while (current != nullptr) 
+    jawaban *current = head;
+    while (current != nullptr)
     {
         std::string cipher = "";
         std::string add = "x";
-        for (char c : current->opsiJwb) 
+        for (char c : current->opsiJwb)
         {
-            if (isalpha(c)) 
+            if (isalpha(c))
             {
                 char base = isupper(c) ? 'A' : 'a';
                 c = ((c - base) + shift) % 26 + base;
@@ -44,76 +42,102 @@ void CaesarCipherEncrypt(jawaban* head, int shift)
     }
 }
 
-void displayList(jawaban* head) 
+void createFile(string hasilEnkrip, string namaFile, string user)
 {
-    jawaban* current = head;
-    while (current != nullptr) 
-    {
-        std::cout << current->opsiJwb << std::endl;
-        current = current->next;
-    }
-}
-
-void freeList(jawaban* head) 
-{
-    jawaban* current = head;
-    while (current != nullptr) 
-    {
-        jawaban* next = current->next;
-        delete current;
-        current = next;
-    }
-    head = nullptr;
-}
-
-void createFile(string hasilEnkrip, string namaFile, string user) {
     string path;
-    if(user == "dosen"){
+    if (user == "dosen")
+    {
         path = "assets/folder-kunci-jawaban/";
         namaFile = "kunjaw" + namaFile;
-    } else {
-        path  = "assets/folder-jawab-mhsw/";
     }
-    ofstream file( path + namaFile + ".txt");
-    if (file.is_open()) {
+    else
+    {
+        path = "assets/folder-jawab-mhsw/";
+    }
+    ofstream file(path + namaFile + ".txt");
+    if (file.is_open())
+    {
         file << hasilEnkrip;
         file.close();
         cout << "File berhasil dibuat!\n";
-    } else {
+    }
+    else
+    {
         cerr << "File gagal dibuat!\n";
     }
 }
 
-void removeSpaces(string &str) {
+void removeSpaces(string &str)
+{
     str.erase(remove(str.begin(), str.end(), ' '), str.end());
 }
 
-void toLowerCase(string &str) {
-    for (char &ch : str) {
-        if (isupper(ch)) {
+void toLowerCase(string &str)
+{
+    for (char &ch : str)
+    {
+        if (isupper(ch))
+        {
             ch = tolower(ch);
-        }  
+        }
     }
 }
 
-void deleteSameChar(string &key)
+void deleteSameChar(jawaban *headkey)
 {
-    string temp;
-    for (char c : key)
+    jawaban *current = headkey;
+    while (current != NULL)
     {
-        bool found = false;
-        for (char d : temp)
+        string opsiJwb = current->opsiJwb;
+        string newOpsiJwb = "";
+
+        for (int i = 0; i < opsiJwb.length(); i++)
         {
-            if (d == c)
+            bool found = false;
+            for (int j = 0; j < newOpsiJwb.length(); j++)
             {
-                found = true;
+                if (opsiJwb[i] == newOpsiJwb[j])
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                newOpsiJwb += opsiJwb[i];
             }
         }
-        if (!found)
-        {
-            temp += c;
-        }
+
+        current->opsiJwb = newOpsiJwb;
+        current = current->next;
     }
-    key = temp;
 }
 
+void buatkey(string key, jawaban *headkey)
+{
+
+    for (char c : key)
+    {
+        jawaban *nodeKey = (jawaban *)malloc(sizeof(jawaban));
+        if (nodeKey == NULL)
+        {
+            cout << "Memori Full\n";
+            return;
+        }
+        nodeKey->opsiJwb = c;
+        nodeKey->next = NULL;
+        if (headkey == NULL)
+        {
+            headkey = nodeKey;
+        }
+        else
+        {
+            jawaban *temp = headkey;
+            while (temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            temp->next = nodeKey;
+        }
+    }
+}
