@@ -23,11 +23,12 @@ void addNode(jawaban *head, string &data)
 
 void CaesarCipherEnkrip(jawaban *head, int shift)
 {
+    shift = (pow(shift, 5) / 2);
     jawaban *current = head;
     while (current != nullptr)
     {
         std::string cipher = "";
-        std::string add = "x";
+        std::string add = "x";  
         for (char c : current->opsiJwb)
         {
             if (isalpha(c))
@@ -38,13 +39,15 @@ void CaesarCipherEnkrip(jawaban *head, int shift)
             cipher += c + add;
         }
         current->opsiJwb = cipher;
+        shift--;
         current = current->next;
     }
 }
 
-void createFile(string hasilEnkrip, string namaFile, string user)
+void createFile(jawaban* head, string user, string namaFile)
 {
     string path;
+    jawaban *current = head;
     if (user == "dosen")
     {
         path = "assets/folder-kunci-jawaban/";
@@ -57,7 +60,11 @@ void createFile(string hasilEnkrip, string namaFile, string user)
     ofstream file(path + namaFile + ".txt");
     if (file.is_open())
     {
-        file << hasilEnkrip;
+        while (current != NULL)
+        {
+            file << current->opsiJwb << endl;
+            current = current->next;
+        }
         file.close();
         cout << "File berhasil dibuat!\n";
     }

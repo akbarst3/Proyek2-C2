@@ -38,8 +38,8 @@ int main()
                 buatkey (mataUjian, headkey);
                 CaesarCipherEnkrip(headkey, jumlahSoal);
                 deleteSameChar(headkey);
-                headKunjaw = PlayfairCipher(headKunjaw, headkey);
-                createFile(headKunjaw, mataUjian, "dosen");
+               // headKunjaw = PlayfairCipher(headKunjaw, headkey);
+                createFile(headKunjaw, "dosen", mataUjian);
                 break;
             case '2':
                 system("cls");
