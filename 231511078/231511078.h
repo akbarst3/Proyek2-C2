@@ -1,16 +1,11 @@
 #ifndef HEAD078_H
 #define HEAD078_H
+#include "../user.h"
 
 #include <string>
 #include <iostream> 
 #include <algorithm>
 using namespace std;
-
-struct Node {
-    char data;
-    Node* next;
-    Node(char d);
-};
 
 struct MatrixNode {
     char data;
