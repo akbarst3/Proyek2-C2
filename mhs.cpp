@@ -22,6 +22,9 @@ int main()
         choice = dashboard(loggedUser);
     }
 
+    string topik;
+    jawaban *head = NULL; // Deklarasikan pointer head
+    jawaban *headkunjaw = NULL;
     switch (choice)
     {
     case '1':
@@ -31,10 +34,14 @@ int main()
 
         questions = readQuestionsFromFile(full_path);
 
-        jawaban *head = NULL;                        // Deklarasikan pointer head
         saveAnswersToLinkedList(questions, head); // Simpan jawaban ke linked list
 
+        cout << topik;
         system("PAUSE");
+        topik = "Assets/folder-kunci-jawaban/" + getTopik(full_path);
+        cout << topik;
+        bacafile(topik, headkunjaw);
+        nilai(headkunjaw, head);
 
     case '2':
         system("cls");

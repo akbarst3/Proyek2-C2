@@ -144,6 +144,7 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
             break;
         }
     }
+    cout << "nilai anda : " << nilai;
 }
 
 string getTopik(string path)
