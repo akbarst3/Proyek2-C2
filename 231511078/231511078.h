@@ -13,12 +13,6 @@ struct MatrixNode {
     MatrixNode(char d);
 };
 
-string list1 = "abcdefghiklmnopqrstuvwxyz"; 
-
-Node::Node(char d) : data(d), next(nullptr) {}
-MatrixNode::MatrixNode(char d) : data(d), next(nullptr) {}
-
-// Function declarations
 void append(Node*& head, char data);
 void appendMatrixNode(MatrixNode*& head, char data);
 void generateKeyTable(Node* key, MatrixNode*& table);
