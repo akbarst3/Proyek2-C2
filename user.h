@@ -16,4 +16,10 @@ struct jawaban
     jawaban *next;
 };
 
+struct Node {
+    char data;
+    Node* next;
+    Node(char d);
+};
+
 #endif

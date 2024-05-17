@@ -8,5 +8,6 @@
 user login(const string &id, const string &password, const string &user);
 user loginMhs();
 user loginDosen();
-void bacafile_kunjaw(string path, jawaban *headkunjaw);
+void bacafile(string path, jawaban *&headkunjaw);
 void nilai(jawaban *headKunjaw, jawaban *headJawab);
+string getTopik(string path);
