@@ -20,3 +20,4 @@ void addNode(jawaban* head, string& data);
 void buatkey(string key, Node* &headkey);
 
 #endif
+
