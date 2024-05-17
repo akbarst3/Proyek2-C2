@@ -57,7 +57,7 @@ void createFile(jawaban* head, string user, string namaFile)
     {
         path = "assets/folder-jawab-mhsw/";
     }
-    ofstream file(path + namaFile + ".txt");
+    ofstream file(path + namaFile);
     if (file.is_open())
     {
         while (current != NULL)

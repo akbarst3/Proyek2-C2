@@ -80,8 +80,8 @@ user loginDosen()
     return userLogged;
 }
 
-void bacafile(string path, jawaban *headkunjaw)
-{ //  
+void bacafile(string path, jawaban *&headkunjaw)
+{
     ifstream bacaFile(path);
     if (bacaFile.is_open())
     {
@@ -90,6 +90,7 @@ void bacafile(string path, jawaban *headkunjaw)
         {
             jawaban *nodejwb = new jawaban;
             nodejwb->opsiJwb = temp;
+            nodejwb->next = NULL;
             if (headkunjaw == NULL)
             {
                 headkunjaw = nodejwb;
@@ -104,7 +105,6 @@ void bacafile(string path, jawaban *headkunjaw)
                 temp->next = nodejwb;
             }
         }
-
         bacaFile.close();
     }
     else
@@ -118,33 +118,26 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
 {
     jawaban *tempKunjaw = headKunjaw;
     jawaban *tempJawab = headJawab;
-    int jumlahSoal;
-    while (tempKunjaw->next != NULL)
+    int jumlahSoal = 0;
+    while (tempKunjaw != NULL)
     {
         jumlahSoal++;
         tempKunjaw = tempKunjaw->next;
     }
     int poin = 100 / jumlahSoal;
     int nilai = 0;
+    tempKunjaw = headKunjaw; // Reset tempKunjaw to start
 
-    for (int i = 0; i <= jumlahSoal; i++)
+    for (int i = 0; i < jumlahSoal && tempJawab != NULL && tempKunjaw != NULL; i++)
     {
-        if (tempJawab != NULL)
+        if (tempKunjaw->opsiJwb == tempJawab->opsiJwb)
         {
-            if (tempKunjaw->opsiJwb == tempJawab->opsiJwb)
-            {
-                nilai = nilai + poin;
-            }
-
-            tempKunjaw = tempKunjaw->next;
-            tempJawab = tempJawab->next;
+            nilai += poin;
         }
-        else
-        {
-            break;
-        }
+        tempKunjaw = tempKunjaw->next;
+        tempJawab = tempJawab->next;
     }
-    cout << "nilai anda : " << nilai;
+    cout << "nilai anda : " << nilai << endl;
 }
 
 string getTopik(string path)
@@ -156,6 +149,6 @@ string getTopik(string path)
     }
     else
     {
-        return path.substr(pos + 1); // Kembalikan string setelah karakter '/'
+        return path.substr(pos + 1); // Kembalikan string setelah karakter '/'
     }
 }
