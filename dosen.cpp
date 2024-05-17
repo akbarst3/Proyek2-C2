@@ -7,50 +7,53 @@
 int main() {
     user loggedUser;
     char choice;
-    if (loggedUser.nama == "")
-    {
-        cout << "Login gagal" << endl;
-        main();
-    }
-    else
-    {
-        string mataUjian;
-        int jumlahSoal;
-        jawaban *headKunjaw;
-        jawaban *headkey;
-        choice = dashboard(loggedUser);
-        for (;;)
-        {
-            switch (choice)
-            {
-            case '1':
-                system("cls");
-                cout << "Nama mata ujian: ";
-                cin >> mataUjian;
-                cout << "Jumlah soal: ";
-                cin >> jumlahSoal;
-                system("cls");
-                buatSoal(mataUjian, jumlahSoal);
-                buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
-                toLowerCase(mataUjian);
-                CaesarCipherEnkrip(headKunjaw, jumlahSoal);
-                buatkey (mataUjian, headkey);
-                CaesarCipherEnkrip(headkey, jumlahSoal);
-                deleteSameChar(headkey);
-                headKunjaw = PlayfairCipher(headKunjaw, headkey);
-                createFile(headKunjaw, mataUjian, "dosen");
-                break;
-            case '2':
-                system("cls");
-                break;
-            default:
-                cout << "---Karakter yang diinputkan tidak valid---" << endl;
-                system("cls");
-            }
-            if (choice != 1)
-            {
-                break;
-            }
+
+    do {
+        loggedUser = loginDosen();
+        if (loggedUser.nama == "") {
+            cout << "Login gagal, silakan coba lagi." << endl;
         }
-    }
+    } while (loggedUser.nama == "");
+
+    string mataUjian;
+    int jumlahSoal;
+    jawaban *headKunjaw = NULL;
+    jawaban *headKey = NULL;
+
+    do {
+        choice = dashboardDosen(loggedUser);
+        switch (choice) {
+        case '1':
+            system("cls");
+            cout << "Nama mata ujian: ";
+            cin >> mataUjian;
+            cout << "Jumlah soal: ";
+            cin >> jumlahSoal;
+            system("cls");
+
+            buatSoal(mataUjian, jumlahSoal);
+            buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
+            toLowerCase(mataUjian);
+            CaesarCipherEnkrip(headKunjaw, jumlahSoal);
+            buatkey(mataUjian, headKey);
+            CaesarCipherEnkrip(headKey, jumlahSoal);
+            deleteSameChar(headKey);
+            // kunjaw = PlayfairCipher(kunjaw, key);
+            createFile(headKunjaw, "dosen", mataUjian);
+            break;
+
+        case '2':
+            system("cls");
+            break;
+
+        default:
+            cout << "---Karakter yang diinputkan tidak valid---" << endl;
+            system("cls");
+        }
+    } while (choice == '1');
+
+    delete headKunjaw;
+    delete headKey;
+
+    return 0;
 }
