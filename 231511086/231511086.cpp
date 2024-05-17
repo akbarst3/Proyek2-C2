@@ -1,8 +1,4 @@
 #include "231511086.h"
-#include <dirent.h>
-#include <limits>
-#include <iostream>
-#include <string>
 
 using namespace std;
 
@@ -51,7 +47,7 @@ vector<Question> readQuestionsFromFile(const string &filename)
 }
 
 // Fungsi untuk menyimpan jawaban ke dalam linked list
-void saveAnswersToLinkedList(const vector<Question> &questions, Node *&head)
+void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
 {
   cout << "------------------------------\n";
   cout << "|                            |\n";
@@ -71,24 +67,24 @@ void saveAnswersToLinkedList(const vector<Question> &questions, Node *&head)
       cout << questions[i].options[j] << endl;
     }
     cout << "Jawaban Anda (A/B/C/D): ";
-    char answer;
-    cin >> answer;
+    char opsiJwb;
+    cin >> opsiJwb;
 
     // Memastikan jawaban yang dimasukkan adalah huruf kapital
-    if (answer >= 'a' && answer <= 'z')
+    if (opsiJwb >= 'a' && opsiJwb <= 'z')
     {
-      answer -= ('a' - 'A'); // Konversi huruf ke huruf kapital
+      opsiJwb -= ('a' - 'A'); // Konversi huruf ke huruf kapital
     }
 
-    if (answer != 'A' && answer != 'B' && answer != 'C' && answer != 'D')
+    if (opsiJwb != 'A' && opsiJwb != 'B' && opsiJwb != 'C' && opsiJwb != 'D')
     {
       cout << "Jawaban tidak valid." << endl;
-      answer = 'I'; // Ganti 'I' dengan karakter lain untuk menandakan jawaban tidak valid
+      opsiJwb = 'Invalid'; // Ganti 'I' dengan karakter lain untuk menandakan jawaban tidak valid
     }
 
     // Membuat node baru untuk menyimpan jawaban
-    Node *newNode = new Node;
-    newNode->answer = answer;
+    jawaban *newNode = new jawaban;
+    newNode->opsiJwb = opsiJwb;
     newNode->next = NULL;
 
     // Menambahkan node baru ke awal linked list
@@ -98,12 +94,12 @@ void saveAnswersToLinkedList(const vector<Question> &questions, Node *&head)
 }
 
 // Fungsi untuk mencetak isi linked list
-void printLinkedList(Node *head)
+void printLinkedList(jawaban *head)
 {
   cout << "Daftar Jawaban:" << endl;
   while (head != NULL)
   {
-    cout << head->answer << " ";
+    cout << head->opsiJwb << endl;
     head = head->next;
   }
   cout << endl;
@@ -116,7 +112,7 @@ char dashboard(user mhs)
   // Tampilkan dashboard
   cout << "------------------------------\n";
   cout << "|                            |\n";
-  cout << "|       DASHBOARD MAHASISWA      |\n";
+  cout << "|       DASHBOARD MAHASISWA  |\n";
   cout << "|                            |\n";
   cout << "------------------------------\n";
   cout << "Selamat datang di dasbor Mahasiswa" << endl;
