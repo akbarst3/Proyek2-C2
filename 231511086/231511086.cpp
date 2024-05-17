@@ -54,7 +54,7 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
   cout << "|       DASHBOARD UJIAN      |\n";
   cout << "|                            |\n";
   cout << "------------------------------\n";
-  cout << "ISI SOAL DENGAN HURUF KAPITAL (A/B/C/D)" << endl;
+  cout << "ISI SOAL DENGAN HURUF Kecil (a/b/c/d)" << endl;
 
   // Menginisialisasi pointer head ke NULL
   head = NULL;
@@ -66,20 +66,26 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
     {
       cout << questions[i].options[j] << endl;
     }
-    cout << "Jawaban Anda (A/B/C/D): ";
     char opsiJwb;
-    cin >> opsiJwb;
-
-    // Memastikan jawaban yang dimasukkan adalah huruf kapital
-    if (opsiJwb >= 'a' && opsiJwb <= 'z')
+    while (true)
     {
-      opsiJwb -= ('a' - 'A'); // Konversi huruf ke huruf kapital
-    }
+      cout << "Jawaban Anda (a/b/c/d): ";
+      cin >> opsiJwb;
 
-    if (opsiJwb != 'A' && opsiJwb != 'B' && opsiJwb != 'C' && opsiJwb != 'D')
-    {
-      cout << "Jawaban tidak valid." << endl;
-      opsiJwb = 'Invalid'; // Ganti 'I' dengan karakter lain untuk menandakan jawaban tidak valid
+      // Mengubah huruf kapital menjadi huruf kecil
+      if (opsiJwb >= 'A' && opsiJwb <= 'Z')
+      {
+        opsiJwb = tolower(opsiJwb);
+      }
+
+      if (opsiJwb == 'a' || opsiJwb == 'b' || opsiJwb == 'c' || opsiJwb == 'd')
+      {
+        break;
+      }
+      else
+      {
+        cout << "Jawaban tidak valid. Silakan masukkan a/b/c/d (huruf kecil)" << endl;
+      }
     }
 
     // Membuat node baru untuk menyimpan jawaban

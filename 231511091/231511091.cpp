@@ -120,31 +120,27 @@ void deleteSameChar(jawaban *headkey)
     }
 }
 
-void buatkey(string key, jawaban *headkey)
+void buatkey(string key, Node* &headkey)
 {
+    Node* last = nullptr;
 
     for (char c : key)
     {
-        jawaban *nodeKey = (jawaban *)malloc(sizeof(jawaban));
-        if (nodeKey == NULL)
+        Node* nodeKey = new Node(c); 
+        if (nodeKey == nullptr)
         {
             cout << "Memori Full\n";
             return;
         }
-        nodeKey->opsiJwb = c;
-        nodeKey->next = NULL;
-        if (headkey == NULL)
+
+        if (headkey == nullptr)
         {
-            headkey = nodeKey;
+            headkey = nodeKey; 
         }
         else
         {
-            jawaban *temp = headkey;
-            while (temp->next != NULL)
-            {
-                temp = temp->next;
-            }
-            temp->next = nodeKey;
+            last->next = nodeKey; 
         }
+        last = nodeKey; 
     }
 }

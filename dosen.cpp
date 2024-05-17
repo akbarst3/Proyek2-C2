@@ -19,6 +19,7 @@ int main() {
     int jumlahSoal;
     jawaban *headKunjaw = NULL;
     jawaban *headKey = NULL;
+    Node *HeadKey = NULL;
 
     do {
         choice = dashboardDosen(loggedUser);
@@ -35,7 +36,7 @@ int main() {
             buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
             toLowerCase(mataUjian);
             CaesarCipherEnkrip(headKunjaw, jumlahSoal);
-            buatkey(mataUjian, headKey);
+            buatkey(mataUjian, HeadKey);
             CaesarCipherEnkrip(headKey, jumlahSoal);
             deleteSameChar(headKey);
             // kunjaw = PlayfairCipher(kunjaw, key);
