@@ -40,11 +40,10 @@ int main()
         topik = "Assets/folder-kunci-jawaban/kunjaw" + topik;
         bacafile(topik, headkunjaw);
         nilai(headkunjaw, head);
-
-        break; // Tambahkan break di sini
+        break;
 
     case '2':
         system("cls");
-        break; // Tambahkan break di sini
+        break;
     }
 }

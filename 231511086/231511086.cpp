@@ -66,19 +66,19 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
     {
       cout << questions[i].options[j] << endl;
     }
-    char opsiJwb;
+    char data;
     while (true)
     {
       cout << "Jawaban Anda (a/b/c/d): ";
-      cin >> opsiJwb;
+      cin >> data;
 
       // Mengubah huruf kapital menjadi huruf kecil
-      if (opsiJwb >= 'A' && opsiJwb <= 'Z')
+      if (data >= 'A' && data <= 'Z')
       {
-        opsiJwb = tolower(opsiJwb);
+        data = tolower(data);
       }
 
-      if (opsiJwb == 'a' || opsiJwb == 'b' || opsiJwb == 'c' || opsiJwb == 'd')
+      if (data == 'a' || data == 'b' || data == 'c' || data == 'd')
       {
         break;
       }
@@ -89,13 +89,13 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
     }
 
     // Membuat node baru untuk menyimpan jawaban
-    jawaban *newNode = new jawaban;
-    newNode->opsiJwb = opsiJwb;
-    newNode->next = NULL;
+    jawaban *newJawaban = (jawaban *)malloc(sizeof(jawaban));
+    newJawaban->data = data;
+    newJawaban->next = NULL;
 
     // Menambahkan node baru ke awal linked list
-    newNode->next = head;
-    head = newNode;
+    newJawaban->next = head;
+    head = newJawaban;
   }
 }
 
@@ -105,7 +105,7 @@ void printLinkedList(jawaban *head)
   cout << "Daftar Jawaban:" << endl;
   while (head != NULL)
   {
-    cout << head->opsiJwb << endl;
+    cout << head->data << endl;
     head = head->next;
   }
   cout << endl;
@@ -130,6 +130,7 @@ char dashboard(user mhs)
   cin >> answer;
   return answer;
 }
+
 // Implementasi fungsi chooseFile di luar kelas
 string chooseFile(const string &folder_path)
 {
