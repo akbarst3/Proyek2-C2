@@ -110,3 +110,15 @@ void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& ci
         temp = temp->next->next;
     }
 }
+
+jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key) {
+    MatrixNode* table = nullptr;
+    generateKeyTable(key, table);
+
+    jawaban* plainText = nullptr;
+
+    jawaban* cipherText = nullptr;
+
+    encryptByPlayfairCipher(table, plainText, cipherText);
+    return cipherText;
+}
