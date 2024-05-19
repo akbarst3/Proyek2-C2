@@ -1,46 +1,21 @@
 #include "231511091.h"
 
-void addNode(jawaban *head, string &data)
-{
-    jawaban *newNode = new jawaban;
-    newNode->opsiJwb = data;
-    newNode->next = nullptr;
-
-    if (head == nullptr)
-    {
-        head = newNode;
-    }
-    else
-    {
-        jawaban *current = head;
-        while (current->next != nullptr)
-        {
-            current = current->next;
-        }
-        current->next = newNode;
-    }
-}
-
 void CaesarCipherEnkrip(jawaban *head, int shift)
 {
-    shift = (pow(shift, 5) / 2);
-    jawaban *current = head;
+    if (head == nullptr) return;
+    shift = pow(shift,5); 
+    jawaban *current = head;    
     while (current != nullptr)
     {
-        std::string cipher = "";
-        std::string add = "x";  
-        for (char c : current->opsiJwb)
+        char c = current->data;
+        if (isalpha(c))
         {
-            if (isalpha(c))
-            {
-                char base = isupper(c) ? 'A' : 'a';
-                c = ((c - base) + shift) % 26 + base;
-            }
-            cipher += c + add;
+            char base = isupper(c) ? 'A' : 'a';
+            c = ((c - base + shift) % 26) + base; 
         }
-        current->opsiJwb = cipher;
+        current->data = c; 
+        current = current->next; 
         shift--;
-        current = current->next;
     }
 }
 
@@ -60,9 +35,9 @@ void createFile(jawaban* head, string user, string namaFile)
     ofstream file(path + namaFile);
     if (file.is_open())
     {
-        while (current != NULL)
+        while (current != nullptr)
         {
-            file << current->opsiJwb << endl;
+            file << current->data << endl;
             current = current->next;
         }
         file.close();
@@ -93,40 +68,45 @@ void toLowerCase(string &str)
 void deleteSameChar(jawaban *headkey)
 {
     jawaban *current = headkey;
-    while (current != NULL)
-    {
-        string opsiJwb = current->opsiJwb;
-        string newOpsiJwb = "";
+    jawaban *prev = nullptr;
+    string seenChars = "";  
 
-        for (int i = 0; i < opsiJwb.length(); i++)
+    while (current != nullptr)
+    {
+        char currentChar = current->data;
+        if (seenChars.find(currentChar) != string::npos) 
         {
-            bool found = false;
-            for (int j = 0; j < newOpsiJwb.length(); j++)
+            
+            if (prev != nullptr)
             {
-                if (opsiJwb[i] == newOpsiJwb[j])
-                {
-                    found = true;
-                    break;
-                }
+                prev->next = current->next;
+                delete current; 
+                current = prev->next; 
             }
-            if (!found)
+            else
             {
-                newOpsiJwb += opsiJwb[i];
+                
+                headkey = current->next;
+                delete current;
+                current = headkey;
             }
         }
-
-        current->opsiJwb = newOpsiJwb;
-        current = current->next;
+        else
+        {
+            seenChars += currentChar; 
+            prev = current;
+            current = current->next;
+        }
     }
 }
 
-void buatkey(string key, Node* &headkey)
+void buatkey(string key, jawaban* &headkey)
 {
-    Node* last = nullptr;
+    jawaban* last = nullptr;
 
     for (char c : key)
     {
-        Node* nodeKey = new Node(c); 
+        jawaban* nodeKey = new jawaban(c); 
         if (nodeKey == nullptr)
         {
             cout << "Memori Full\n";

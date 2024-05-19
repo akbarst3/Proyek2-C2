@@ -16,8 +16,7 @@ void createFile(jawaban* head, string user, string namaFile);
 void removeSpaces(string &str);
 void toLowerCase(string &str);
 void deleteSameChar(jawaban* headkey);
-void addNode(jawaban* head, string& data);
-void buatkey(string key, Node* &headkey);
+void buatkey(string key, jawaban* &headkey);
 
 #endif
 
