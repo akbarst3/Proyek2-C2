@@ -35,10 +35,10 @@ int main() {
             buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
             toLowerCase(mataUjian);
             CaesarCipherEnkrip(headKunjaw, jumlahSoal);
-            buatkey(mataUjian, HeadKey);
+            buatkey(mataUjian, headKey);
             CaesarCipherEnkrip(headKey, jumlahSoal);
             deleteSameChar(headKey);
-            // kunjaw = PlayfairCipher(kunjaw, key);
+            headKunjaw = PlayfairCipher(headKunjaw, headKey);
             createFile(headKunjaw, "dosen", mataUjian);
             break;
 
