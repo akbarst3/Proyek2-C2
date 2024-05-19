@@ -1,5 +1,10 @@
 #include "231511078.h"
 
+string list1 = "abcdefghiklmnopqrstuvwxyz"; 
+
+Node::Node(char d) : data(d), next(nullptr) {}
+MatrixNode::MatrixNode(char d) : data(d), next(nullptr) {}
+
 void append(Node*& head, char data) {
     Node* newNode = new Node(data);
     if (!head) {
