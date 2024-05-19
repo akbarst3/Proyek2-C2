@@ -13,11 +13,11 @@ struct MatrixNode {
     MatrixNode(char d);
 };
 
-void append(Node*& head, char data);
+void append(jawaban*& head, char data);
 void appendMatrixNode(MatrixNode*& head, char data);
-void generateKeyTable(Node* key, MatrixNode*& table);
+void generateKeyTable(jawaban* key, MatrixNode*& table);
 void findPosition(MatrixNode* table, char letter, int& row, int& col);
 char getCharAt(MatrixNode* table, int row, int col);
-void encryptByPlayfairCipher(MatrixNode* table, Node* plainText, Node*& cipherText);
+void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& cipherText);
 
 #endif

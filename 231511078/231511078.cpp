@@ -2,16 +2,16 @@
 
 string list1 = "abcdefghiklmnopqrstuvwxyz"; 
 
-Node::Node(char d) : data(d), next(nullptr) {}
+jawaban::jawaban(char d) : data(d), next(nullptr) {}
 MatrixNode::MatrixNode(char d) : data(d), next(nullptr) {}
 
-void append(Node*& head, char data) {
-    Node* newNode = new Node(data);
+void append(jawaban*& head, char data) {
+    jawaban* newNode = new jawaban(data);
     if (!head) {
         head = newNode;
         return;
     }
-    Node* temp = head;
+    jawaban* temp = head;
     while (temp->next) {
         temp = temp->next;
     }
@@ -31,8 +31,8 @@ void appendMatrixNode(MatrixNode*& head, char data) {
     temp->next = newNode;
 }
 
-void generateKeyTable(Node* key, MatrixNode*& table) {
-    Node* temp = key;
+void generateKeyTable(jawaban* key, MatrixNode*& table) {
+    jawaban* temp = key;
     while (temp) {
         bool flag = false;
         MatrixNode* mTemp = table;
@@ -91,8 +91,8 @@ char getCharAt(MatrixNode* table, int row, int col) {
     return '\0';
 }
 
-void encryptByPlayfairCipher(MatrixNode* table, Node* plainText, Node*& cipherText) {
-    Node* temp = plainText;
+void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& cipherText) {
+    jawaban* temp = plainText;
     while (temp && temp->next) {
         int row1, col1, row2, col2;
         findPosition(table, temp->data, row1, col1);
