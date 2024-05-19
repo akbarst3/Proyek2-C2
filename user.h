@@ -10,16 +10,10 @@ struct user{
     string nama;
 };
 
-struct jawaban
-{
-    string opsiJwb;
-    jawaban *next;
-};
-
-struct Node {
+struct jawaban {
     char data;
-    Node* next;
-    Node(char d);
+    jawaban* next;
+    jawaban(char d);
 };
 
 #endif
