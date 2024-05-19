@@ -19,7 +19,6 @@ int main() {
     int jumlahSoal;
     jawaban *headKunjaw = NULL;
     jawaban *headKey = NULL;
-    Node *HeadKey = NULL;
 
     do {
         choice = dashboardDosen(loggedUser);
