@@ -65,41 +65,6 @@ void toLowerCase(string &str)
     }
 }
 
-void deleteSameChar(jawaban *headkey)
-{
-    jawaban *current = headkey;
-    jawaban *prev = nullptr;
-    string seenChars = "";  
-
-    while (current != nullptr)
-    {
-        char currentChar = current->data;
-        if (seenChars.find(currentChar) != string::npos) 
-        {
-            
-            if (prev != nullptr)
-            {
-                prev->next = current->next;
-                delete current; 
-                current = prev->next; 
-            }
-            else
-            {
-                
-                headkey = current->next;
-                delete current;
-                current = headkey;
-            }
-        }
-        else
-        {
-            seenChars += currentChar; 
-            prev = current;
-            current = current->next;
-        }
-    }
-}
-
 void buatkey(string key, jawaban* &headkey)
 {
     jawaban* last = nullptr;
