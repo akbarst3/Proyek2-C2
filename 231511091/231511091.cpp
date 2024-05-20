@@ -87,3 +87,4 @@ void buatkey(string key, jawaban* &headkey)
         last = nodeKey; 
     }
 }
+
