@@ -13,7 +13,7 @@ struct user{
 struct jawaban {
     char data;
     jawaban* next;
-    jawaban(char d);
+    jawaban(char d): data(d), next(nullptr) {}
 };
 
 #endif
