@@ -51,7 +51,8 @@ void soalBaru(ujian **head, int jumlahSoal)
         soal->next = NULL;
         cout << i + 1 << ". ";
         getline(cin, soal->pertanyaan);
-        for (int j = 0; j < 4; j++);
+        int j;
+        for (j = 0; j < 4; j++);
         {
             jawaban *opsiJawab = (jawaban *)malloc(sizeof(jawaban));
             opsiJawab->next = NULL;
