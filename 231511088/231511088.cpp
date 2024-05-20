@@ -43,35 +43,36 @@ void toUpperCase(string *str)
 
 void soalBaru(ujian **head, int jumlahSoal)
 {
-    jawaban *headOpsi = NULL;
-    cin.ignore();
     for (int i = 0; i < jumlahSoal; i++)
     {
+        cin.ignore();
         ujian *soal = new ujian();
         soal->next = NULL;
+        soal->opsi = NULL;
         cout << i + 1 << ". ";
         getline(cin, soal->pertanyaan);
+
+        jawaban *headOpsi = NULL;
+        jawaban *lastOpsi = NULL;
         for (int j = 0; j < 4; j++)
         {
             jawaban *opsiJawab = (jawaban*)malloc(sizeof(jawaban));
             opsiJawab->next = NULL;
             cout << " " << char('a' + j) << ". ";
             cin >> opsiJawab->data;
+
             if (headOpsi == NULL)
             {
                 headOpsi = opsiJawab;
             }
             else
             {
-                jawaban *temp = headOpsi;
-                while (temp->next != NULL)
-                {
-                    temp = temp->next;
-                }
-                temp->next = opsiJawab;
+                lastOpsi->next = opsiJawab;
             }
+            lastOpsi = opsiJawab;
         }
-        cout << "\n\n";
+        soal->opsi = headOpsi;
+
         if (*head == NULL)
         {
             *head = soal;
@@ -104,6 +105,7 @@ void simpanKeFile(ujian *head, string namaFile, int jumlahSoal)
             {
                 file << " " << char('A' + j) << ". " << tempOpsi->data << endl;
                 tempOpsi = tempOpsi->next;
+                j++;
             }
             file << "\n";
             temp = temp->next;
