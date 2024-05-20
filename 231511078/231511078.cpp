@@ -88,6 +88,29 @@ char getCharAt(MatrixNode* table, int row, int col) {
     return '\0';
 }
 
+void fillDiagraph(jawaban*& head) {
+    jawaban* temp = head;
+    jawaban* prev = nullptr;
+    int count = 0; 
+    while (temp && temp->next) {
+        count++;
+        if (temp->data == temp->next->data) {
+            jawaban* newNode = new jawaban('z');
+            newNode->next = temp->next;
+            temp->next = newNode;
+            prev = newNode;
+            temp = newNode->next;
+        } else {
+            prev = temp;
+            temp = temp->next;
+        }
+    }
+    
+    if (count % 2 == 0) {
+        append(prev, 'z');
+    }
+}
+
 void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& cipherText) {
     jawaban* temp = plainText;
     while (temp && temp->next) {
