@@ -128,7 +128,7 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
     float nilai = 0;
     tempKunjaw = headKunjaw; // Reset tempKunjaw to start
 
-    for (int i = 0; i < jumlahSoal && tempJawab != NULL && tempKunjaw != NULL; i++)
+    for (int i = 0; i < jumlahSoal; i++)
     {
         if (tempKunjaw->data == tempJawab->data)
         {
