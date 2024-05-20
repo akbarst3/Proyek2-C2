@@ -1,6 +1,7 @@
 #include "231511085/231511085.h"
 #include "231511086/231511086.h"
 #include "231511091/231511091.h"
+#include "231511078/231511078.h"
 #include "user.h"
 #include <string>
 
@@ -24,8 +25,11 @@ int main()
     choice = dashboard(loggedUser);
 
     string topik;
+    string mataUjian;
+    int jumlahSoal;
     jawaban *head = NULL;
-    jawaban *headkunjaw = NULL;
+    jawaban *headKunjaw = NULL;
+    jawaban *headKey = NULL;
     switch (choice)
     {
     case '1':
@@ -35,11 +39,16 @@ int main()
         questions = readQuestionsFromFile(full_path);
         saveAnswersToLinkedList(questions, head);
         topik = getTopik(full_path);
+        CaesarCipherEnkrip(headKunjaw, jumlahSoal);
+        buatkey(mataUjian, headKey);
+        CaesarCipherEnkrip(headKey, jumlahSoal);
+        deleteSameChar(headKey);
+        headKunjaw = PlayfairCipher(headKunjaw, headKey);
         createFile(head, "mhs", topik);
         system("PAUSE");
         topik = "Assets/folder-kunci-jawaban/kunjaw" + topik;
-        bacafile(topik, headkunjaw);
-        nilai(headkunjaw, head);
+        bacafile(topik, headKunjaw);
+        nilai(headKunjaw, head);
         break;
 
     case '2':
