@@ -10,7 +10,7 @@ using namespace std;
 struct MatrixNode {
     char data;
     MatrixNode* next;
-    MatrixNode(char d);
+    MatrixNode(char d): data(d), next(nullptr) {}
 };
 
 void append(jawaban*& head, char data);

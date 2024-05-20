@@ -51,10 +51,9 @@ void soalBaru(ujian **head, int jumlahSoal)
         soal->next = NULL;
         cout << i + 1 << ". ";
         getline(cin, soal->pertanyaan);
-        int j;
-        for (j = 0; j < 4; j++);
+        for (int j = 0; j < 4; j++)
         {
-            jawaban *opsiJawab = (jawaban *)malloc(sizeof(jawaban));
+            jawaban *opsiJawab = (jawaban*)malloc(sizeof(jawaban));
             opsiJawab->next = NULL;
             cout << " " << char('a' + j) << ". ";
             cin >> opsiJawab->data;
@@ -87,7 +86,6 @@ void soalBaru(ujian **head, int jumlahSoal)
             temp->next = soal;
         }
     }
-    (*head)->opsi = headOpsi;
 }
 
 void simpanKeFile(ujian *head, string namaFile, int jumlahSoal)
