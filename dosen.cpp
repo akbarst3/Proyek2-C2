@@ -37,7 +37,6 @@ int main() {
             CaesarCipherEnkrip(headKunjaw, jumlahSoal);
             buatkey(mataUjian, headKey);
             CaesarCipherEnkrip(headKey, jumlahSoal);
-            deleteSameChar(headKey);
             headKunjaw = PlayfairCipher(headKunjaw, headKey);
             createFile(headKunjaw, "dosen", mataUjian);
             break;
@@ -57,3 +56,4 @@ int main() {
 
     return 0;
 }
+
