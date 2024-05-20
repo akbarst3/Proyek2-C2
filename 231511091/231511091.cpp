@@ -3,7 +3,6 @@
 void CaesarCipherEnkrip(jawaban *head, int shift)
 {
     if (head == nullptr) return;
-    shift = pow(shift,5); 
     jawaban *current = head;    
     while (current != nullptr)
     {
@@ -15,7 +14,6 @@ void CaesarCipherEnkrip(jawaban *head, int shift)
         }
         current->data = c; 
         current = current->next; 
-        shift--;
     }
 }
 
