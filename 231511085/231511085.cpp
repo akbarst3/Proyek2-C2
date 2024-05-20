@@ -128,7 +128,7 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
     float nilai = 0;
     tempKunjaw = headKunjaw; // Reset tempKunjaw to start
 
-    for (int i = 0; i < jumlahSoal && tempJawab != NULL && tempKunjaw != NULL; i++)
+    for (int i = 0; i < jumlahSoal; i++)
     {
         if (tempKunjaw->data == tempJawab->data)
         {
@@ -149,6 +149,15 @@ string getTopik(string path)
     }
     else
     {
-        return path.substr(pos + 1); // Kembalikan string setelah karakter '/'
+        string filename = path.substr(pos + 1); // Ambil nama file dengan ekstensi
+        size_t dotPos = filename.find_last_of('.'); // Cari posisi terakhir dari '.'
+        if (dotPos != string::npos)
+        {
+            return filename.substr(0, dotPos); // Kembalikan nama file tanpa ekstensi
+        }
+        else
+        {
+            return filename; // Jika tidak ada ekstensi, kembalikan nama file asli
+        }
     }
 }
