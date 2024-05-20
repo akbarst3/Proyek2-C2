@@ -38,6 +38,7 @@ int main()
         full_path = chooseFile(folder_path);
         questions = readQuestionsFromFile(full_path);
         saveAnswersToLinkedList(questions, head);
+        printLinkedList(head);
         topik = getTopik(full_path);
         CaesarCipherEnkrip(headKunjaw, jumlahSoal);
         buatkey(mataUjian, headKey);
