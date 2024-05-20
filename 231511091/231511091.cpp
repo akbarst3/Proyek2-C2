@@ -24,7 +24,7 @@ void createFile(jawaban* head, string user, string namaFile)
     if (user == "dosen")
     {
         path = "assets/folder-kunci-jawaban/";
-        namaFile = "kunjaw" + namaFile;
+        namaFile = "kunjaw" + namaFile + ".txt";
     }
     else
     {
