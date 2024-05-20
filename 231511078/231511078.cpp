@@ -2,9 +2,6 @@
 
 string list1 = "abcdefghiklmnopqrstuvwxyz"; 
 
-jawaban::jawaban(char d) : data(d), next(nullptr) {}
-MatrixNode::MatrixNode(char d) : data(d), next(nullptr) {}
-
 void append(jawaban*& head, char data) {
     jawaban* newNode = new jawaban(data);
     if (!head) {
