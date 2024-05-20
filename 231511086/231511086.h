@@ -23,5 +23,6 @@ vector<Question> readQuestionsFromFile(const string& filename);
 void saveAnswersToLinkedList(const vector<Question>& questions, jawaban*& head);
 char dashboard(user mhs);
 string chooseFile(const string& folder_path);
+void printLinkedList(jawaban *head);
 
 #endif
