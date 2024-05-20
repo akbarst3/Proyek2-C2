@@ -84,7 +84,7 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
       }
       else
       {
-        cout << "Jawaban tidak valid. Silakan masukkan a/b/c/d (huruf kecil)" << endl;
+        cout << "Jawaban tidak valid. Silakan masukkan a/b/c/d" << endl;
       }
     }
 
