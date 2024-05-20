@@ -112,10 +112,8 @@ jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key) {
     MatrixNode* table = nullptr;
     generateKeyTable(key, table);
 
-    jawaban* plainText = plainText;
-
     jawaban* cipherText = nullptr;
 
-    encryptByPlayfairCipher(table, plainText, cipherText);
+    encryptByPlayfairCipher(table, plaintext, cipherText);
     return cipherText;
 }

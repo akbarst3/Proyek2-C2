@@ -25,9 +25,8 @@ int main()
     choice = dashboard(loggedUser);
 
     string topik;
-    string mataUjian;
     int jumlahSoal;
-    jawaban *head = NULL;
+    jawaban *headPlain = NULL;
     jawaban *headKunjaw = NULL;
     jawaban *headKey = NULL;
     switch (choice)
@@ -37,19 +36,25 @@ int main()
 
         full_path = chooseFile(folder_path);
         questions = readQuestionsFromFile(full_path);
-        saveAnswersToLinkedList(questions, head);
-        printLinkedList(head);
+        jumlahSoal = questions.size();
+        cout << jumlahSoal;
+        saveAnswersToLinkedList(questions, headPlain);
+        printLinkedList(headPlain);
         topik = getTopik(full_path);
-        CaesarCipherEnkrip(headKunjaw, jumlahSoal);
-        buatkey(mataUjian, headKey);
+        toLowerCase(topik);
+        CaesarCipherEnkrip(headPlain, jumlahSoal);
+        buatkey(topik, headKey);
+        printLinkedList(headKey);
         CaesarCipherEnkrip(headKey, jumlahSoal);
-        headKunjaw = PlayfairCipher(headKunjaw, headKey);
-        jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key);
-        createFile(head, "mhs", topik);
+        headPlain =  PlayfairCipher(headPlain, headKey);
+        cout << "-----------------" << endl;
+        printLinkedList(headPlain);
+        printLinkedList(headKey);
+        createFile(headPlain, "mhs", topik + ".txt");
         system("PAUSE");
-        topik = "Assets/folder-kunci-jawaban/kunjaw" + topik;
+        topik = "Assets/folder-kunci-jawaban/kunjaw" + topik + ".txt";
         bacafile(topik, headKunjaw);
-        nilai(headKunjaw, head);
+        nilai(headKunjaw, headPlain);
         break;
 
     case '2':
