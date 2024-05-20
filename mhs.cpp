@@ -44,6 +44,7 @@ int main()
         buatkey(mataUjian, headKey);
         CaesarCipherEnkrip(headKey, jumlahSoal);
         headKunjaw = PlayfairCipher(headKunjaw, headKey);
+        jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key);
         createFile(head, "mhs", topik);
         system("PAUSE");
         topik = "Assets/folder-kunci-jawaban/kunjaw" + topik;

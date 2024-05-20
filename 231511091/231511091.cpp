@@ -3,7 +3,6 @@
 void CaesarCipherEnkrip(jawaban *head, int shift)
 {
     if (head == nullptr) return;
-    shift = pow(shift,5); 
     jawaban *current = head;    
     while (current != nullptr)
     {
@@ -15,7 +14,6 @@ void CaesarCipherEnkrip(jawaban *head, int shift)
         }
         current->data = c; 
         current = current->next; 
-        shift--;
     }
 }
 
@@ -26,7 +24,7 @@ void createFile(jawaban* head, string user, string namaFile)
     if (user == "dosen")
     {
         path = "assets/folder-kunci-jawaban/";
-        namaFile = "kunjaw" + namaFile;
+        namaFile = "kunjaw" + namaFile + ".txt";
     }
     else
     {
@@ -65,41 +63,6 @@ void toLowerCase(string &str)
     }
 }
 
-void deleteSameChar(jawaban *headkey)
-{
-    jawaban *current = headkey;
-    jawaban *prev = nullptr;
-    string seenChars = "";  
-
-    while (current != nullptr)
-    {
-        char currentChar = current->data;
-        if (seenChars.find(currentChar) != string::npos) 
-        {
-            
-            if (prev != nullptr)
-            {
-                prev->next = current->next;
-                delete current; 
-                current = prev->next; 
-            }
-            else
-            {
-                
-                headkey = current->next;
-                delete current;
-                current = headkey;
-            }
-        }
-        else
-        {
-            seenChars += currentChar; 
-            prev = current;
-            current = current->next;
-        }
-    }
-}
-
 void buatkey(string key, jawaban* &headkey)
 {
     jawaban* last = nullptr;
@@ -124,3 +87,4 @@ void buatkey(string key, jawaban* &headkey)
         last = nodeKey; 
     }
 }
+
