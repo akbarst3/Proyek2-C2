@@ -85,11 +85,11 @@ void bacafile(string path, jawaban *&headkunjaw)
     ifstream bacaFile(path);
     if (bacaFile.is_open())
     {
-        string temp;
-        while (getline(bacaFile, temp))
+        char temp;
+        while (bacaFile.get(temp))
         {
-            jawaban *nodejwb = new jawaban;
-            nodejwb->opsiJwb = temp;
+            jawaban *nodejwb = (jawaban *)malloc(sizeof(jawaban));
+            nodejwb->data = temp;
             nodejwb->next = NULL;
             if (headkunjaw == NULL)
             {
@@ -124,13 +124,13 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
         jumlahSoal++;
         tempKunjaw = tempKunjaw->next;
     }
-    int poin = 100 / jumlahSoal;
-    int nilai = 0;
+    float poin = 100 / jumlahSoal;
+    float nilai = 0;
     tempKunjaw = headKunjaw; // Reset tempKunjaw to start
 
     for (int i = 0; i < jumlahSoal && tempJawab != NULL && tempKunjaw != NULL; i++)
     {
-        if (tempKunjaw->opsiJwb == tempJawab->opsiJwb)
+        if (tempKunjaw->data == tempJawab->data)
         {
             nilai += poin;
         }
