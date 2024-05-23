@@ -32,12 +32,14 @@ int main() {
             cin >> jumlahSoal;
             system("cls");
             buatSoal(mataUjian, jumlahSoal);
-            buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
+            buatKunjaw(&headKunjaw, mataUjian, jumlahSoal);
+            printLinkedList(headKunjaw);
             toLowerCase(mataUjian);
             CaesarCipherEnkrip(headKunjaw, jumlahSoal);
             buatkey(mataUjian, headKey);
             CaesarCipherEnkrip(headKey, jumlahSoal);
             headKunjaw = PlayfairCipher(headKunjaw, headKey);
+            printLinkedList(headKunjaw);
             createFile(headKunjaw, "dosen", mataUjian);
             system("pause");
             break;
