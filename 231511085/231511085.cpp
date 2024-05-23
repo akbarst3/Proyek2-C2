@@ -114,19 +114,12 @@ void bacafile(string path, jawaban *&headkunjaw)
     }
 }
 
-void nilai(jawaban *headKunjaw, jawaban *headJawab)
+void nilai(jawaban *headKunjaw, jawaban *headJawab, int jumlahSoal)
 {
     jawaban *tempKunjaw = headKunjaw;
     jawaban *tempJawab = headJawab;
-    int jumlahSoal = 0;
-    while (tempKunjaw != NULL)
-    {
-        jumlahSoal++;
-        tempKunjaw = tempKunjaw->next;
-    }
     float poin = 100 / jumlahSoal;
     float nilai = 0;
-    tempKunjaw = headKunjaw; // Reset tempKunjaw to start
 
     for (int i = 0; i < jumlahSoal; i++)
     {
@@ -137,7 +130,7 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
         tempKunjaw = tempKunjaw->next;
         tempJawab = tempJawab->next;
     }
-    cout << "nilai anda : " << nilai << endl;
+    cout << "nilai anda : " << nilai << "\n\n";
 }
 
 string getTopik(string path)
