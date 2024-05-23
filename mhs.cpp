@@ -26,9 +26,9 @@ int main()
 
     string topik;
     int jumlahSoal;
-    jawaban *headPlain = NULL;
-    jawaban *headKunjaw = NULL;
-    jawaban *headKey = NULL;
+    jawaban *headPlain = nullptr;
+    jawaban *headKunjaw = nullptr;
+    jawaban *headKey = nullptr;
     switch (choice)
     {
     case '1':
