@@ -131,19 +131,6 @@ void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& ci
     }
 }
 
-void printMatrix(MatrixNode* table) {
-    MatrixNode* temp = table;
-    int index = 0;
-    while (temp) {
-        cout << temp->data << ' ';
-        index++;
-        if (index % 5 == 0) {
-            cout << endl;
-        }
-        temp = temp->next;
-    }
-}
-
 jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key) {
     fillDiagraph(plaintext);
 
