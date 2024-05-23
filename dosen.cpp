@@ -58,8 +58,12 @@ int main()
         }
     } while (choice == '1');
 
-    delete headKunjaw;
-    delete headKey;
-
+    while (headKunjaw != NULL && headKey != NULL)
+    {
+        delete headKunjaw;
+        delete headKey;
+        headKunjaw = headKunjaw->next;
+        headKey = headKey->next;
+    }
     return 0;
 }
