@@ -29,6 +29,7 @@ void createFile(jawaban* head, string user, string namaFile)
     else
     {
         path = "assets/folder-jawab-mhsw/";
+        namaFile = namaFile + ".txt";
     }
     ofstream file(path + namaFile);
     if (file.is_open())
@@ -45,11 +46,6 @@ void createFile(jawaban* head, string user, string namaFile)
     {
         cerr << "File gagal dibuat!\n";
     }
-}
-
-void removeSpaces(string &str)
-{
-    str.erase(remove(str.begin(), str.end(), ' '), str.end());
 }
 
 void toLowerCase(string &str)
