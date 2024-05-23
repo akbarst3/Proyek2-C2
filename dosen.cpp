@@ -3,15 +3,16 @@
 #include "231511085/231511085.h"
 #include "231511088/231511088.h"
 #include "231511091/231511091.h"
-#include "231511086/231511086.h"
 
-int main() {
+int main()
+{
     user loggedUser;
-    char choice;
 
-    do {
+    do
+    {
         loggedUser = loginDosen();
-        if (loggedUser.nama == "") {
+        if (loggedUser.nama == "")
+        {
             cout << "Login gagal, silakan coba lagi." << endl;
         }
     } while (loggedUser.nama == "");
@@ -20,10 +21,13 @@ int main() {
     int jumlahSoal;
     jawaban *headKunjaw = NULL;
     jawaban *headKey = NULL;
+    char choice;
 
-    do {
+    do
+    {
         choice = dashboardDosen(loggedUser);
-        switch (choice) {
+        switch (choice)
+        {
         case '1':
             system("cls");
             cout << "Nama mata ujian: ";
@@ -33,13 +37,11 @@ int main() {
             system("cls");
             buatSoal(mataUjian, jumlahSoal);
             buatKunjaw(&headKunjaw, mataUjian, jumlahSoal);
-            printLinkedList(headKunjaw);
             toLowerCase(mataUjian);
             CaesarCipherEnkrip(headKunjaw, jumlahSoal);
             buatkey(mataUjian, headKey);
             CaesarCipherEnkrip(headKey, jumlahSoal);
             headKunjaw = PlayfairCipher(headKunjaw, headKey);
-            printLinkedList(headKunjaw);
             createFile(headKunjaw, "dosen", mataUjian);
             system("pause");
             break;
@@ -50,7 +52,9 @@ int main() {
 
         default:
             cout << "---Karakter yang diinputkan tidak valid---" << endl;
+            system("PAUSE");
             system("cls");
+            break;
         }
     } while (choice == '1');
 
@@ -59,4 +63,3 @@ int main() {
 
     return 0;
 }
-
