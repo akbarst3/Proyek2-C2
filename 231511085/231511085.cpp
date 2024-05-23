@@ -85,12 +85,17 @@ void bacafile(string path, jawaban *&headkunjaw)
     ifstream bacaFile(path);
     if (bacaFile.is_open())
     {
-        char temp;
-        while (bacaFile.get(temp))
+        char tempChar;
+        while (bacaFile.get(tempChar))
         {
-            jawaban *nodejwb = (jawaban *)malloc(sizeof(jawaban));
-            nodejwb->data = temp;
+            if (tempChar == '\n')
+            {
+                continue;
+            }
+            jawaban *nodejwb = new jawaban(tempChar);
+            nodejwb->data = tempChar;
             nodejwb->next = NULL;
+
             if (headkunjaw == NULL)
             {
                 headkunjaw = nodejwb;
