@@ -132,6 +132,9 @@ void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& ci
 }
 
 jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key) {
+    jawaban* plainText = nullptr;
+    fillDiagraph(plainText);
+
     MatrixNode* table = nullptr;
     generateKeyTable(key, table);
 
