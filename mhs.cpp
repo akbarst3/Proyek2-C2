@@ -15,50 +15,57 @@ int main()
     user loggedUser;
     char choice;
 
-    do {
+    do
+    {
         loggedUser = loginMhs();
-        if (loggedUser.nama == "") {
+        if (loggedUser.nama == "")
+        {
             cout << "Login gagal, silakan coba lagi." << endl;
         }
     } while (loggedUser.nama == "");
-
-    choice = dashboard(loggedUser);
 
     string topik;
     int jumlahSoal;
     jawaban *headPlain = nullptr;
     jawaban *headKunjaw = nullptr;
     jawaban *headKey = nullptr;
-    switch (choice)
+
+    do
     {
-    case '1':
-        system("cls");
 
-        full_path = chooseFile(folder_path);
-        questions = readQuestionsFromFile(full_path);
-        jumlahSoal = questions.size();
-        cout << jumlahSoal;
-        saveAnswersToLinkedList(questions, headPlain);
-        printLinkedList(headPlain);
-        topik = getTopik(full_path);
-        toLowerCase(topik);
-        CaesarCipherEnkrip(headPlain, jumlahSoal);
-        buatkey(topik, headKey);
-        printLinkedList(headKey);
-        CaesarCipherEnkrip(headKey, jumlahSoal);
-        headPlain =  PlayfairCipher(headPlain, headKey);
-        cout << "-----------------" << endl;
-        printLinkedList(headPlain);
-        printLinkedList(headKey);
-        createFile(headPlain, "mhs", topik + ".txt");
-        system("PAUSE");
-        topik = "Assets/folder-kunci-jawaban/kunjaw" + topik + ".txt";
-        bacafile(topik, headKunjaw);
-        nilai(headKunjaw, headPlain);
-        break;
+        choice = dashboard(loggedUser);
+        switch (choice)
+        {
+        case '1':
+            system("cls");
 
-    case '2':
-        system("cls");
-        break;
-    }
+            full_path = chooseFile(folder_path);
+            questions = readQuestionsFromFile(full_path);
+            jumlahSoal = questions.size();
+            saveAnswersToLinkedList(questions, headPlain);
+            topik = getTopik(full_path);
+            toLowerCase(topik);
+            CaesarCipherEnkrip(headPlain, jumlahSoal);
+            buatkey(topik, headKey);
+            CaesarCipherEnkrip(headKey, jumlahSoal);
+            headPlain = PlayfairCipher(headPlain, headKey);
+            cout << "-----------------" << endl;
+            createFile(headPlain, "mhs", topik + ".txt");
+            system("PAUSE");
+            topik = "Assets/folder-kunci-jawaban/kunjaw" + topik + ".txt";
+            bacafile(topik, headKunjaw);
+            nilai(headKunjaw, headPlain, jumlahSoal);
+            break;
+
+        case '2':
+            system("cls");
+            break;
+        
+        default:
+            cout << "---Karakter yang diinputkan tidak valid---" << endl;
+            system("cls");
+            break;
+        }
+
+    } while (choice == '1');
 }
