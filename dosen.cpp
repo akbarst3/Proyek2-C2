@@ -3,6 +3,7 @@
 #include "231511085/231511085.h"
 #include "231511088/231511088.h"
 #include "231511091/231511091.h"
+#include "231511086/231511086.h"
 
 int main() {
     user loggedUser;
@@ -30,15 +31,17 @@ int main() {
             cout << "Jumlah soal: ";
             cin >> jumlahSoal;
             system("cls");
-
             buatSoal(mataUjian, jumlahSoal);
-            buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
+            buatKunjaw(&headKunjaw, mataUjian, jumlahSoal);
+            printLinkedList(headKunjaw);
             toLowerCase(mataUjian);
             CaesarCipherEnkrip(headKunjaw, jumlahSoal);
             buatkey(mataUjian, headKey);
             CaesarCipherEnkrip(headKey, jumlahSoal);
             headKunjaw = PlayfairCipher(headKunjaw, headKey);
+            printLinkedList(headKunjaw);
             createFile(headKunjaw, "dosen", mataUjian);
+            system("pause");
             break;
 
         case '2':
