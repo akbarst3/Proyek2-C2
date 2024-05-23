@@ -18,6 +18,7 @@ void appendMatrixNode(MatrixNode*& head, char data);
 void generateKeyTable(jawaban* key, MatrixNode*& table);
 void findPosition(MatrixNode* table, char letter, int& row, int& col);
 char getCharAt(MatrixNode* table, int row, int col);
+void fillDiagraph(jawaban*& head);
 void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& cipherText);
 jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key);
 

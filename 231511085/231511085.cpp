@@ -85,12 +85,17 @@ void bacafile(string path, jawaban *&headkunjaw)
     ifstream bacaFile(path);
     if (bacaFile.is_open())
     {
-        char temp;
-        while (bacaFile.get(temp))
+        char tempChar;
+        while (bacaFile.get(tempChar))
         {
-            jawaban *nodejwb = (jawaban *)malloc(sizeof(jawaban));
-            nodejwb->data = temp;
+            if (tempChar == '\n')
+            {
+                continue;
+            }
+            jawaban *nodejwb = new jawaban(tempChar);
+            nodejwb->data = tempChar;
             nodejwb->next = NULL;
+
             if (headkunjaw == NULL)
             {
                 headkunjaw = nodejwb;
@@ -114,21 +119,14 @@ void bacafile(string path, jawaban *&headkunjaw)
     }
 }
 
-void nilai(jawaban *headKunjaw, jawaban *headJawab)
+void nilai(jawaban *headKunjaw, jawaban *headJawab, int jumlahSoal)
 {
     jawaban *tempKunjaw = headKunjaw;
     jawaban *tempJawab = headJawab;
-    int jumlahSoal = 0;
-    while (tempKunjaw != NULL)
-    {
-        jumlahSoal++;
-        tempKunjaw = tempKunjaw->next;
-    }
     float poin = 100 / jumlahSoal;
     float nilai = 0;
-    tempKunjaw = headKunjaw; // Reset tempKunjaw to start
 
-    for (int i = 0; i < jumlahSoal && tempJawab != NULL && tempKunjaw != NULL; i++)
+    for (int i = 0; i < jumlahSoal; i++)
     {
         if (tempKunjaw->data == tempJawab->data)
         {
@@ -137,7 +135,7 @@ void nilai(jawaban *headKunjaw, jawaban *headJawab)
         tempKunjaw = tempKunjaw->next;
         tempJawab = tempJawab->next;
     }
-    cout << "nilai anda : " << nilai << endl;
+    cout << "nilai anda : " << nilai << "\n\n";
 }
 
 string getTopik(string path)

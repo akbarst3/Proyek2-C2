@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <dirent.h>
+#include <cctype>
 #include <limits>
 #include <filesystem>
 #include "../user.h"

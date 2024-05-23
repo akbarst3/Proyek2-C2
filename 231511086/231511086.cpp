@@ -57,7 +57,8 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
   cout << "ISI SOAL DENGAN HURUF Kecil (a/b/c/d)" << endl;
 
   // Menginisialisasi pointer head ke NULL
-  head = NULL;
+  head = nullptr;
+  jawaban *tail = nullptr;
 
   for (size_t i = 0; i < questions.size(); ++i)
   {
@@ -72,11 +73,10 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
       cout << "Jawaban Anda (a/b/c/d): ";
       cin >> data;
 
-      // Mengubah huruf kapital menjadi huruf kecil
-      if (data >= 'A' && data <= 'Z')
-      {
-        data = tolower(data);
-      }
+      // Mengabaikan karakter newline yang tersisa di buffer input
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+      data = tolower(data);
 
       if (data == 'a' || data == 'b' || data == 'c' || data == 'd')
       {
@@ -89,13 +89,18 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
     }
 
     // Membuat node baru untuk menyimpan jawaban
-    jawaban *newJawaban = (jawaban *)malloc(sizeof(jawaban));
-    newJawaban->data = data;
-    newJawaban->next = NULL;
+    jawaban *newJawaban = new jawaban(data);
 
     // Menambahkan node baru ke awal linked list
-    newJawaban->next = head;
-    head = newJawaban;
+    if (tail == nullptr)
+    {
+      head = newJawaban;
+    }
+    else
+    {
+      tail->next = newJawaban;
+    }
+    tail = newJawaban; // Update penunjuk tail
   }
 }
 
@@ -103,10 +108,11 @@ void saveAnswersToLinkedList(const vector<Question> &questions, jawaban *&head)
 void printLinkedList(jawaban *head)
 {
   cout << "Daftar Jawaban:" << endl;
-  while (head != NULL)
+  jawaban *current = head;
+  while (current != nullptr)
   {
-    cout << head->data << endl;
-    head = head->next;
+    cout << current->data << " ";
+    current = current->next;
   }
   cout << endl;
 }
@@ -131,7 +137,7 @@ char dashboard(user mhs)
   return answer;
 }
 
-// Implementasi fungsi chooseFile di luar kelas
+// Implementasi fungsi chooseFile
 string chooseFile(const string &folder_path)
 {
   // Menampilkan daftar file kepada pengguna

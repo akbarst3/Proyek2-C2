@@ -6,18 +6,25 @@
 #include <algorithm>
 #include "../user.h"
 
-struct ujian
+struct opsiJawaban
+{
+    string data;
+    opsiJawaban *next;
+};
+
+struct soalBaru
 {
     string pertanyaan;
-    jawaban *opsi;
-    ujian *next;
+    opsiJawaban *opsi;
+    soalBaru *next;
 };
+
 
 char dashboardDosen(user dosen);
 void buatSoal(string mataUjian, int jumlahSoal);
 void toUpperCase(string *str);
-void soalBaru(ujian **head, int jumlahSoal);
-void simpanKeFile(ujian *head, string namaFile, int jumlahSoal);
-void buatKunjaw(jawaban *headKunjaw, string mataUjian, int jumlahSoal);
+void tulisSoal(soalBaru **head, int jumlahSoal);
+void simpanKeFile(soalBaru *head, string namaFile, int jumlahSoal);
+void buatKunjaw(jawaban **headKunjaw, string mataUjian, int jumlahSoal);
 
 #endif

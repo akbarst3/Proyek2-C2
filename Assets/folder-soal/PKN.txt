@@ -1,4 +1,5 @@
 1. a
+<<<<<<< HEAD
  A. a
  B. a
  C. a
@@ -27,4 +28,16 @@
  B. a
  C. a
  D. a
+=======
+ A. a  B. a  C. a  D. a 
+
+2. a
+ A. a  B. a  C. a  D. a 
+
+3. a
+ A. a  B. a  C. a  D. a 
+
+4. a
+ A. a  B. a  C. a  D. a 
+>>>>>>> 9ada5c42864296e467c75f24dca26d6113dac7e9
 

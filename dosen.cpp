@@ -4,13 +4,15 @@
 #include "231511088/231511088.h"
 #include "231511091/231511091.h"
 
-int main() {
+int main()
+{
     user loggedUser;
-    char choice;
 
-    do {
+    do
+    {
         loggedUser = loginDosen();
-        if (loggedUser.nama == "") {
+        if (loggedUser.nama == "")
+        {
             cout << "Login gagal, silakan coba lagi." << endl;
         }
     } while (loggedUser.nama == "");
@@ -19,10 +21,13 @@ int main() {
     int jumlahSoal;
     jawaban *headKunjaw = NULL;
     jawaban *headKey = NULL;
+    char choice;
 
-    do {
+    do
+    {
         choice = dashboardDosen(loggedUser);
-        switch (choice) {
+        switch (choice)
+        {
         case '1':
             system("cls");
             cout << "Nama mata ujian: ";
@@ -30,15 +35,15 @@ int main() {
             cout << "Jumlah soal: ";
             cin >> jumlahSoal;
             system("cls");
-
             buatSoal(mataUjian, jumlahSoal);
-            buatKunjaw(headKunjaw, mataUjian, jumlahSoal);
+            buatKunjaw(&headKunjaw, mataUjian, jumlahSoal);
             toLowerCase(mataUjian);
             CaesarCipherEnkrip(headKunjaw, jumlahSoal);
             buatkey(mataUjian, headKey);
             CaesarCipherEnkrip(headKey, jumlahSoal);
             headKunjaw = PlayfairCipher(headKunjaw, headKey);
             createFile(headKunjaw, "dosen", mataUjian);
+            system("pause");
             break;
 
         case '2':
@@ -47,13 +52,18 @@ int main() {
 
         default:
             cout << "---Karakter yang diinputkan tidak valid---" << endl;
+            system("PAUSE");
             system("cls");
+            break;
         }
     } while (choice == '1');
 
-    delete headKunjaw;
-    delete headKey;
-
+    while (headKunjaw != NULL && headKey != NULL)
+    {
+        delete headKunjaw;
+        delete headKey;
+        headKunjaw = headKunjaw->next;
+        headKey = headKey->next;
+    }
     return 0;
 }
-
