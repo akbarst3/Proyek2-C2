@@ -7,6 +7,9 @@
 int main()
 {
     user loggedUser;
+    string mataUjian;
+    int jumlahSoal;
+    char choice;
 
     do
     {
@@ -15,55 +18,50 @@ int main()
         {
             cout << "Login gagal, silakan coba lagi." << endl;
         }
-    } while (loggedUser.nama == "");
-
-    string mataUjian;
-    int jumlahSoal;
-    jawaban *headKunjaw = NULL;
-    jawaban *headKey = NULL;
-    char choice;
-
-    do
-    {
-        choice = dashboardDosen(loggedUser);
-        switch (choice)
+        else
         {
-        case '1':
-            system("cls");
-            cout << "Nama mata ujian: ";
-            cin >> mataUjian;
-            cout << "Jumlah soal: ";
-            cin >> jumlahSoal;
-            system("cls");
-            buatSoal(mataUjian, jumlahSoal);
-            buatKunjaw(&headKunjaw, mataUjian, jumlahSoal);
-            toLowerCase(mataUjian);
-            CaesarCipherEnkrip(headKunjaw, jumlahSoal);
-            buatkey(mataUjian, headKey);
-            CaesarCipherEnkrip(headKey, jumlahSoal);
-            headKunjaw = PlayfairCipher(headKunjaw, headKey);
-            createFile(headKunjaw, "dosen", mataUjian);
-            system("pause");
-            break;
+            do
+            {
+                jawaban *headKunjaw = NULL;
+                jawaban *headKey = NULL;
+                choice = dashboardDosen(loggedUser);
+                switch (choice)
+                {
+                case '1':
+                    system("cls");
+                    cout << "Nama mata ujian: ";
+                    cin >> mataUjian;
+                    cout << "Jumlah soal: ";
+                    cin >> jumlahSoal;
+                    system("cls");
+                    buatSoal(mataUjian, jumlahSoal);
+                    buatKunjaw(&headKunjaw, mataUjian, jumlahSoal);
+                    toLowerCase(mataUjian);
+                    CaesarCipherEnkrip(headKunjaw, jumlahSoal);
+                    buatkey(mataUjian, headKey);
+                    CaesarCipherEnkrip(headKey, jumlahSoal);
+                    headKunjaw = PlayfairCipher(headKunjaw, headKey);
+                    toUpperCase(&mataUjian);
+                    createFile(headKunjaw, "dosen", mataUjian);
+                    system("pause");
+                    break;
 
-        case '2':
-            system("cls");
-            break;
+                case '2':
+                    loggedUser.nama = "";
+                    system("cls");
+                    break;
 
-        default:
-            cout << "---Karakter yang diinputkan tidak valid---" << endl;
-            system("PAUSE");
-            system("cls");
-            break;
+                default:
+                    cout << "---Karakter yang diinputkan tidak valid---" << endl;
+                    choice = '1';
+                    system("pause");
+                    system("cls");
+                    break;
+                    freeMemory(&headKey);
+                    freeMemory(&headKunjaw);
+                }
+            }while (choice != '2');
         }
-    } while (choice == '1');
-
-    while (headKunjaw != NULL && headKey != NULL)
-    {
-        delete headKunjaw;
-        delete headKey;
-        headKunjaw = headKunjaw->next;
-        headKey = headKey->next;
-    }
+    } while (loggedUser.nama == "");
     return 0;
 }

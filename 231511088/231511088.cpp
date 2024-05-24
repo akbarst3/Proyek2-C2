@@ -119,7 +119,8 @@ void simpanKeFile(soalBaru *head, string namaFile, int jumlahSoal)
             i++;
         }
         file.close();
-        cout << "Soal telah disimpan ke dalam folder-soal dengan nama file '" << namaFile << ".txt'" << endl << endl;
+        cout << "Soal telah disimpan ke dalam folder-soal dengan nama file '" << namaFile << ".txt'" << endl
+             << endl;
     }
     else
     {
@@ -152,7 +153,6 @@ void buatKunjaw(jawaban **headKunjaw, string mataUjian, int jumlahSoal)
         if (!valid)
         {
             cout << "Input salah! (a/b/c/d)" << endl;
-            free(kunjaw);
         }
         else
         {
@@ -172,5 +172,15 @@ void buatKunjaw(jawaban **headKunjaw, string mataUjian, int jumlahSoal)
             }
             temp->next = kunjaw;
         }
+    }
+}
+
+void freeMemory(jawaban **head)
+{
+    while (*head != NULL)
+    {
+        jawaban *temp = *head;
+        *head = (*head)->next;
+        delete temp;
     }
 }

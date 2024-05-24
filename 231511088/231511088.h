@@ -26,5 +26,6 @@ void toUpperCase(string *str);
 void tulisSoal(soalBaru **head, int jumlahSoal);
 void simpanKeFile(soalBaru *head, string namaFile, int jumlahSoal);
 void buatKunjaw(jawaban **headKunjaw, string mataUjian, int jumlahSoal);
+void freeMemory(jawaban **head);
 
 #endif
