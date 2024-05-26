@@ -23,12 +23,12 @@ void createFile(jawaban* head, string user, string namaFile)
     jawaban *current = head;
     if (user == "dosen")
     {
-        path = "assets/folder-kunci-jawaban/";
+        path = "Assets/folder-kunci-jawaban/";
         namaFile = "kunjaw" + namaFile + ".txt";
     }
     else
     {
-        path = "assets/folder-jawab-mhsw/";
+        path = "Assets/folder-jawab-mhsw/";
         namaFile = namaFile + ".txt";
     }
     ofstream file(path + namaFile);
