@@ -89,25 +89,31 @@ char getCharAt(MatrixNode* table, int row, int col) {
 }
 
 void fillDiagraph(jawaban*& head) {
-    jawaban* temp = head;
-    jawaban* prev = nullptr;
+    jawaban* temp = head; 
+    jawaban* prev = nullptr; 
     int count = 0; 
-    while (temp && temp->next) {
-        count++;
-        if (temp->data == temp->next->data) {
-            jawaban* newNode = new jawaban('z');
-            newNode->next = temp->next;
-            temp->next = newNode;
-            prev = newNode;
-            temp = newNode->next;
+
+    while (temp && temp->next) { 
+        count++; 
+        if (temp->data == temp->next->data) { 
+            jawaban* newNode = new jawaban('z'); 
+            newNode->next = temp->next; 
+            temp->next = newNode; 
+            prev = newNode; 
+            temp = newNode->next; 
+            count++; 
         } else {
-            prev = temp;
-            temp = temp->next;
+            prev = temp; 
+            temp = temp->next; 
         }
     }
-    
-    if (count % 2 == 0) {
-        append(prev, 'z');
+
+    if (temp) {
+        count++;
+    }
+
+    if (count % 2 != 0) {
+        append(prev, 'z'); 
     }
 }
 
