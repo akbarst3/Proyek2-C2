@@ -13,7 +13,6 @@ using namespace std;
 
 void CaesarCipherEnkrip(jawaban* head, int shift);
 void createFile(jawaban* head, string user, string namaFile);
-void removeSpaces(string &str);
 void toLowerCase(string &str);
 void buatkey(string key, jawaban* &headkey);
 
