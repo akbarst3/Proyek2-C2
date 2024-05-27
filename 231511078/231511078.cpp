@@ -117,6 +117,17 @@ void fillDiagraph(jawaban*& head) {
     }
 }
 
+void replaceJWithI(jawaban* head) {
+    jawaban* temp = head; 
+    while (temp != nullptr) { 
+        if (temp->data == 'j') { 
+            temp->data = 'i'; 
+        }
+        temp = temp->next; 
+    }
+}
+
+
 void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& cipherText) {
     jawaban* temp = plainText;
     while (temp && temp->next) {
@@ -138,6 +149,9 @@ void encryptByPlayfairCipher(MatrixNode* table, jawaban* plainText, jawaban*& ci
 }
 
 jawaban* PlayfairCipher(jawaban* plaintext, jawaban* key) {
+    replaceJWithI(key);
+
+    replaceJWithI(plaintext);
     fillDiagraph(plaintext);
 
     MatrixNode* table = nullptr;
